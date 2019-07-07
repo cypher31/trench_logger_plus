@@ -1,0 +1,166 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://tab_project/tab_project.gd" type="Script" id=1]
+[ext_resource path="res://tab_master/tab_master.tscn" type="PackedScene" id=2]
+[ext_resource path="res://user_input_entry/user_input_entry.tscn" type="PackedScene" id=3]
+[ext_resource path="res://user_input_dropdown/user_input_dropdown.tscn" type="PackedScene" id=4]
+
+[node name="tab_project" type="Control"]
+anchor_bottom = 1.0
+margin_right = 974.0
+margin_bottom = -600.0
+rect_min_size = Vector2( 974, 0 )
+script = ExtResource( 1 )
+
+[node name="tab_master" parent="." instance=ExtResource( 2 )]
+margin_right = 974.0
+margin_bottom = -576.0
+rect_min_size = Vector2( 974, 0 )
+
+[node name="mc" parent="tab_master/vbox" index="0"]
+margin_bottom = 189.0
+
+[node name="vbox" type="VBoxContainer" parent="tab_master/vbox/mc" index="0"]
+margin_right = 1024.0
+margin_bottom = 189.0
+rect_min_size = Vector2( 974, 0 )
+
+[node name="input_proj_number" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
+editor/display_folded = true
+margin_right = 1024.0
+
+[node name="input_label" parent="tab_master/vbox/mc/vbox/input_proj_number" index="0"]
+margin_right = 510.0
+size_flags_horizontal = 3
+text = "Project Number"
+
+[node name="user_input" parent="tab_master/vbox/mc/vbox/input_proj_number" index="1"]
+margin_left = 514.0
+margin_right = 1024.0
+
+[node name="input_units" parent="tab_master/vbox/mc/vbox/input_proj_number" index="2"]
+visible = false
+margin_left = 244.0
+margin_right = 244.0
+
+[node name="input_proj_name" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
+editor/display_folded = true
+margin_top = 29.0
+margin_right = 1024.0
+margin_bottom = 54.0
+
+[node name="input_label" parent="tab_master/vbox/mc/vbox/input_proj_name" index="0"]
+margin_right = 510.0
+size_flags_horizontal = 3
+text = "Project Name"
+
+[node name="user_input" parent="tab_master/vbox/mc/vbox/input_proj_name" index="1"]
+margin_left = 514.0
+margin_right = 1024.0
+
+[node name="input_units" parent="tab_master/vbox/mc/vbox/input_proj_name" index="2"]
+visible = false
+margin_left = 230.0
+margin_right = 244.0
+
+[node name="input_user_initials" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
+editor/display_folded = true
+margin_top = 58.0
+margin_right = 1024.0
+margin_bottom = 83.0
+
+[node name="input_label" parent="tab_master/vbox/mc/vbox/input_user_initials" index="0"]
+margin_right = 510.0
+size_flags_horizontal = 3
+text = "User Initials"
+
+[node name="user_input" parent="tab_master/vbox/mc/vbox/input_user_initials" index="1"]
+margin_left = 514.0
+margin_right = 1024.0
+
+[node name="input_units" parent="tab_master/vbox/mc/vbox/input_user_initials" index="2"]
+visible = false
+margin_left = 230.0
+margin_right = 244.0
+
+[node name="input_proj_units" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 4 )]
+editor/display_folded = true
+margin_top = 87.0
+margin_right = 1024.0
+margin_bottom = 112.0
+
+[node name="input_label" parent="tab_master/vbox/mc/vbox/input_proj_units" index="0"]
+margin_right = 510.0
+size_flags_horizontal = 3
+text = "Project Units"
+
+[node name="user_input" parent="tab_master/vbox/mc/vbox/input_proj_units" index="1"]
+margin_left = 514.0
+margin_right = 1024.0
+
+[node name="input_units" parent="tab_master/vbox/mc/vbox/input_proj_units" index="2"]
+visible = false
+margin_left = 240.0
+margin_right = 240.0
+
+[node name="input_working_directory" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
+editor/display_folded = true
+margin_top = 116.0
+margin_right = 1024.0
+margin_bottom = 141.0
+
+[node name="input_label" parent="tab_master/vbox/mc/vbox/input_working_directory" index="0"]
+margin_right = 510.0
+size_flags_horizontal = 3
+text = "Working Dir."
+
+[node name="user_input" parent="tab_master/vbox/mc/vbox/input_working_directory" index="1"]
+margin_left = 514.0
+margin_right = 1024.0
+editable = false
+
+[node name="input_units" parent="tab_master/vbox/mc/vbox/input_working_directory" index="2"]
+visible = false
+
+[node name="button_working_dir" type="Button" parent="tab_master/vbox/mc/vbox"]
+editor/display_folded = true
+margin_top = 145.0
+margin_right = 1024.0
+margin_bottom = 165.0
+text = "Change Working Directory"
+
+[node name="FileDialog" type="FileDialog" parent="tab_master/vbox/mc/vbox/button_working_dir"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 150.511
+margin_top = 46.9188
+margin_right = 425.511
+margin_bottom = 321.919
+rect_min_size = Vector2( 275, 275 )
+window_title = "Open a Directory"
+resizable = true
+mode = 2
+access = 2
+current_dir = "C:/Users/kelby/dev/software/tools/trench_logger_plus"
+current_path = "C:/Users/kelby/dev/software/tools/trench_logger_plus/"
+
+[node name="button_save_data" type="Button" parent="tab_master/vbox/mc/vbox"]
+margin_top = 169.0
+margin_right = 1024.0
+margin_bottom = 189.0
+text = "Save Project"
+[connection signal="item_selected" from="tab_master/vbox/mc/vbox/input_proj_units/user_input" to="." method="_on_user_input_item_selected"]
+
+[editable path="tab_master"]
+
+[editable path="tab_master/vbox/mc/vbox/input_proj_number"]
+
+[editable path="tab_master/vbox/mc/vbox/input_proj_name"]
+
+[editable path="tab_master/vbox/mc/vbox/input_user_initials"]
+
+[editable path="tab_master/vbox/mc/vbox/input_proj_units"]
+
+[editable path="tab_master/vbox/mc/vbox/input_working_directory"]
