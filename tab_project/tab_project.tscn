@@ -18,11 +18,11 @@ margin_bottom = -576.0
 rect_min_size = Vector2( 974, 0 )
 
 [node name="mc" parent="tab_master/vbox" index="0"]
-margin_bottom = 189.0
+margin_bottom = 213.0
 
 [node name="vbox" type="VBoxContainer" parent="tab_master/vbox/mc" index="0"]
 margin_right = 1024.0
-margin_bottom = 189.0
+margin_bottom = 213.0
 rect_min_size = Vector2( 974, 0 )
 
 [node name="input_proj_number" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
@@ -123,7 +123,6 @@ editable = false
 visible = false
 
 [node name="button_working_dir" type="Button" parent="tab_master/vbox/mc/vbox"]
-editor/display_folded = true
 margin_top = 145.0
 margin_right = 1024.0
 margin_bottom = 165.0
@@ -151,6 +150,39 @@ margin_top = 169.0
 margin_right = 1024.0
 margin_bottom = 189.0
 text = "Save Project"
+
+[node name="buttonadd_trench" type="Button" parent="tab_master/vbox/mc/vbox"]
+margin_top = 193.0
+margin_right = 1024.0
+margin_bottom = 213.0
+text = "Add Trench"
+
+[node name="PopupPanel" type="PopupPanel" parent="tab_master/vbox/mc/vbox/buttonadd_trench"]
+visible = true
+margin_right = 8.0
+margin_bottom = 8.0
+rect_min_size = Vector2( 275, 275 )
+
+[node name="vbox" type="VBoxContainer" parent="tab_master/vbox/mc/vbox/buttonadd_trench/PopupPanel"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 279.0
+margin_bottom = 279.0
+rect_min_size = Vector2( 275, 275 )
+
+[node name="Label" type="Label" parent="tab_master/vbox/mc/vbox/buttonadd_trench/PopupPanel/vbox"]
+margin_right = 275.0
+margin_bottom = 14.0
+text = "Add new Trench Exploration"
+align = 1
+
+[node name="LineEdit" type="LineEdit" parent="tab_master/vbox/mc/vbox/buttonadd_trench/PopupPanel/vbox"]
+margin_top = 18.0
+margin_right = 275.0
+margin_bottom = 42.0
+align = 1
+clear_button_enabled = true
+placeholder_text = "Enter Trench Label (Ex. TP-1)"
 [connection signal="item_selected" from="tab_master/vbox/mc/vbox/input_proj_units/user_input" to="." method="_on_user_input_item_selected"]
 
 [editable path="tab_master"]

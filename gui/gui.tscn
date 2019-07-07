@@ -77,6 +77,9 @@ margin_right = 962.0
 [node name="button_save_data" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="6"]
 margin_right = 962.0
 
+[node name="buttonadd_trench" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="7"]
+margin_right = 962.0
+
 [node name="set_working_dir_warning" type="AcceptDialog" parent="."]
 margin_right = 83.0
 margin_bottom = 58.0
