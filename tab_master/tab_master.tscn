@@ -2,8 +2,9 @@
 
 [node name="tab_master" type="Tabs"]
 anchor_bottom = 1.0
-margin_right = 1024.0
-rect_min_size = Vector2( 1024, 0 )
+margin_left = 10.0
+margin_right = 1014.0
+rect_min_size = Vector2( 1004, 0 )
 
 [node name="vbox" type="VBoxContainer" parent="."]
 margin_right = 1024.0
@@ -11,4 +12,4 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 200, 0 )
 
 [node name="mc" type="MarginContainer" parent="vbox"]
-margin_right = 1024.0
+margin_right = 1004.0

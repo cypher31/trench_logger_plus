@@ -5,6 +5,12 @@ extends Node
 
 #general signals
 
+#project specific signals
+
+#project specific variables
+var output_node : Node
+
+
 #devic info variables
 var deviceType
 var deviceWindowSize

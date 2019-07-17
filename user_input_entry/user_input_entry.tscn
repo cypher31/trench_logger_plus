@@ -7,26 +7,25 @@ rect_min_size = Vector2( 225, 0 )
 size_flags_horizontal = 3
 
 [node name="input_label" type="Label" parent="."]
-margin_right = 80.0
+margin_right = 103.0
 margin_bottom = 25.0
-rect_min_size = Vector2( 80, 25 )
+rect_min_size = Vector2( 103, 25 )
 text = "Description"
 align = 1
 valign = 1
 
 [node name="user_input" type="LineEdit" parent="."]
-margin_left = 84.0
-margin_right = 219.0
+margin_left = 107.0
+margin_right = 242.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 135, 25 )
 size_flags_horizontal = 3
 
 [node name="input_units" type="Label" parent="."]
-margin_left = 223.0
-margin_right = 223.0
+margin_left = 246.0
+margin_right = 246.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-size_flags_horizontal = 2
+size_flags_horizontal = 0
 align = 1
 valign = 1
-

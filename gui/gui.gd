@@ -24,6 +24,8 @@ var force : String = "lb/ft"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	utility.output_node = $output
+	
 #	$mc/hbox/vbox/button_run.connect("button_up", self, "get_data") # connect button to function
 #	$mc/hbox/vbox/button_run.connect("button_up", self, "send_data_to_visualize")
 	
