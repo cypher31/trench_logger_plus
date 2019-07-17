@@ -42,7 +42,6 @@ func save_data():
 
 func new_trench():
 	var pop_up = $tab_master/vbox/mc/vbox/button_add_trench/new_trench_pop
-	
 	pop_up.popup_centered()
 	pass
 	
@@ -52,6 +51,7 @@ func new_trench_pop_up():
 	
 	if pop_up_input.length() > 0:
 		pop_up.hide()
+		utility.create_new_tab("tab_trench", pop_up_input)
 	else:
 		utility.output_node.set_text("Please Enter a Valid Name")
 		pop_up.show()

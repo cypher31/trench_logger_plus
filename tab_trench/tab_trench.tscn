@@ -16,7 +16,7 @@ rect_min_size = Vector2( 952, 0 )
 
 [node name="vbox" parent="tab_master" index="0"]
 margin_right = 952.0
-margin_bottom = 220.0
+margin_bottom = 259.0
 
 [node name="mc" parent="tab_master/vbox" index="0"]
 margin_right = 952.0

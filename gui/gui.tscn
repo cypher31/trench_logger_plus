@@ -43,6 +43,7 @@ tab_align = 0
 
 [node name="Project" parent="mc/hbox/vbox/tab_cont" instance=ExtResource( 2 )]
 editor/display_folded = true
+visible = false
 anchor_right = 1.0
 margin_top = 24.0
 margin_right = 0.0
@@ -91,10 +92,16 @@ margin_right = 952.0
 margin_right = 952.0
 
 [node name="TP-1" parent="mc/hbox/vbox/tab_cont" instance=ExtResource( 3 )]
-editor/display_folded = true
-visible = false
 margin_top = 24.0
 margin_right = 0.0
+
+[node name="vbox" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master" index="0"]
+margin_top = 10.0
+margin_bottom = 259.0
+
+[node name="vbox" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc" index="0"]
+margin_top = 0.0
+margin_bottom = 249.0
 
 [node name="set_working_dir_warning" type="AcceptDialog" parent="."]
 margin_right = 83.0
@@ -115,3 +122,7 @@ show_line_numbers = true
 [editable path="mc/hbox/vbox/tab_cont/Project"]
 
 [editable path="mc/hbox/vbox/tab_cont/Project/tab_master"]
+
+[editable path="mc/hbox/vbox/tab_cont/TP-1"]
+
+[editable path="mc/hbox/vbox/tab_cont/TP-1/tab_master"]

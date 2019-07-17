@@ -24,11 +24,4 @@ margin_top = 7.0
 margin_right = 1031.0
 margin_bottom = 607.0
 
-[node name="tab_cont" parent="PanelContainer/gui/mc/hbox/vbox" index="0"]
-editor/display_folded = true
-
-[node name="trench_input_row" parent="PanelContainer/gui/mc/hbox/vbox/tab_cont" index="1"]
-margin_top = 24.0
-margin_bottom = 0.0
-
 [editable path="PanelContainer/gui"]

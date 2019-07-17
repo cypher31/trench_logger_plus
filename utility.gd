@@ -55,20 +55,27 @@ var assetDict = {
 
 #stage scene dictionary
 
-var stageSceneDict = {
+var stage_scene_dict = {
 
 }
 
 
 #object scene dictionary
 
-var objectSceneDict = {
+var object_scene_dict = {
 
+	}
+
+#tab scene dictionary
+var tab_trench = preload("res://tab_trench/tab_trench.tscn")
+
+var tab_scene_dictionary = {
+	"tab_trench" : tab_trench
 	}
 
 #music dictionary
 
-var musicDict = {
+var music_dict = {
 
 	}
 
@@ -128,7 +135,7 @@ func _ready():
 	
 	
 func sceneSwitch(scene): #add a "self" variable so the current scene can free itself before spawning the new screen
-	var instanceScene = stageSceneDict[scene].instance()
+	var instanceScene = stage_scene_dict[scene].instance()
 	
 	get_node("/root/main/PanelContainer").add_child(instanceScene)
 	
@@ -258,7 +265,7 @@ func __saveGameState():
 func change_music(audio):
 	var stream_music = get_tree().get_current_scene().get_node("sound_player_music")
 	
-	stream_music.set_stream(musicDict[audio])
+	stream_music.set_stream(music_dict[audio])
 	stream_music.play()
 	pass
 	
@@ -274,4 +281,12 @@ func play_sound_effect(sfx, bus, free):
 func sfx_finished(bus,free):
 	if free:
 		bus.queue_free()
+	pass
+	
+func create_new_tab(tab_type, tab_name):
+	var tab_container = get_tree().get_current_scene().get_node("PanelContainer/gui/mc/hbox/vbox/tab_cont")
+	var new_tab_instance = tab_scene_dictionary[tab_type].instance()
+	
+	new_tab_instance.set_name(tab_name)
+	tab_container.add_child(new_tab_instance)
 	pass
