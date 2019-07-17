@@ -15,13 +15,14 @@ _global_script_class_icons={
 
 [application]
 
-config/name="New Game Project"
+config/name="trench_logger_plus"
 run/main_scene="res://main/main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 utility="*res://utility.gd"
+data_management="*res://data_management/data_management.gd"
 
 [rendering]
 

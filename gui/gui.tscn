@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://gui/gui.gd" type="Script" id=1]
+[ext_resource path="res://tab_project/tab_project.tscn" type="PackedScene" id=2]
+[ext_resource path="res://tab_trench/tab_trench.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Theme" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.486275, 0.45098, 0.419608, 1 )
+
+[node name="gui" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 1024, 600 )
+script = ExtResource( 1 )
+
+[node name="mc" type="MarginContainer" parent="."]
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 25.0
+margin_right = 1007.0
+margin_bottom = 29.0
+rect_min_size = Vector2( 300, 0 )
+
+[node name="hbox" type="HBoxContainer" parent="mc"]
+margin_right = 982.0
+margin_bottom = 604.0
+rect_min_size = Vector2( 974, 0 )
+
+[node name="vbox" type="VBoxContainer" parent="mc/hbox"]
+margin_right = 974.0
+margin_bottom = 604.0
+size_flags_vertical = 3
+
+[node name="tab_cont" type="TabContainer" parent="mc/hbox/vbox"]
+margin_right = 974.0
+margin_bottom = 550.0
+rect_min_size = Vector2( 974, 550 )
+theme = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
+tab_align = 0
+
+[node name="Project" parent="mc/hbox/vbox/tab_cont" instance=ExtResource( 2 )]
+editor/display_folded = true
+anchor_right = 1.0
+margin_top = 24.0
+margin_right = 0.0
+margin_bottom = 0.0
+rect_min_size = Vector2( 0, 0 )
+
+[node name="tab_master" parent="mc/hbox/vbox/tab_cont/Project" index="0"]
+margin_right = 0.0
+rect_min_size = Vector2( 0, 0 )
+
+[node name="vbox" parent="mc/hbox/vbox/tab_cont/Project/tab_master" index="0"]
+margin_left = 0.0
+margin_top = 10.0
+margin_right = 952.0
+margin_bottom = 223.0
+
+[node name="mc" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox" index="0"]
+margin_right = 952.0
+
+[node name="vbox" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc" index="0"]
+margin_right = 952.0
+rect_min_size = Vector2( 0, 0 )
+
+[node name="input_proj_number" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="0"]
+margin_right = 952.0
+
+[node name="input_proj_name" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="1"]
+margin_right = 952.0
+
+[node name="input_user_initials" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="2"]
+margin_right = 952.0
+
+[node name="input_proj_units" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="3"]
+margin_right = 952.0
+
+[node name="input_working_directory" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="4"]
+margin_right = 952.0
+
+[node name="button_working_dir" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="5"]
+margin_right = 952.0
+
+[node name="button_save_data" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="6"]
+margin_right = 952.0
+
+[node name="button_add_trench" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="7"]
+margin_right = 952.0
+
+[node name="TP-1" parent="mc/hbox/vbox/tab_cont" instance=ExtResource( 3 )]
+editor/display_folded = true
+visible = false
+margin_top = 24.0
+margin_right = 0.0
+
+[node name="set_working_dir_warning" type="AcceptDialog" parent="."]
+margin_right = 83.0
+margin_bottom = 58.0
+dialog_text = "Set Working Directory Before Saving Project!"
+
+[node name="output" type="TextEdit" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 518.164
+margin_right = -25.0
+margin_bottom = -31.8362
+rect_min_size = Vector2( 300, 50 )
+readonly = true
+show_line_numbers = true
+
+[editable path="mc/hbox/vbox/tab_cont/Project"]
+
+[editable path="mc/hbox/vbox/tab_cont/Project/tab_master"]
