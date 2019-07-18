@@ -61,9 +61,10 @@ var stage_scene_dict = {
 
 
 #object scene dictionary
+var user_input_trench_entry = preload("res://user_input_trench_entry/user_input_trench_entry.tscn")
 
 var object_scene_dict = {
-
+	"user_input_trench_entry" : user_input_trench_entry
 	}
 
 #tab scene dictionary
@@ -289,4 +290,11 @@ func create_new_tab(tab_type, tab_name):
 	
 	new_tab_instance.set_name(tab_name)
 	tab_container.add_child(new_tab_instance)
+	pass
+
+
+func add_data_row(row_scene, row_container):
+	var new_row_instance = object_scene_dict[row_scene].instance()
+	
+	row_container.add_child(new_row_instance)
 	pass
