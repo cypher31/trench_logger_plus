@@ -1,0 +1,93 @@
+[gd_scene format=2]
+
+[node name="trench_input_row" type="HBoxContainer"]
+margin_right = 952.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 952, 0 )
+size_flags_horizontal = 3
+
+[node name="trench_depth" type="Label" parent="."]
+margin_top = 30.0
+margin_right = 58.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 58, 5 )
+text = "Depth"
+align = 1
+
+[node name="trench_attitude" type="Label" parent="."]
+margin_left = 62.0
+margin_top = 30.0
+margin_right = 120.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 58, 5 )
+text = "Attitude"
+align = 1
+
+[node name="trench_unit" type="Label" parent="."]
+margin_left = 124.0
+margin_top = 30.0
+margin_right = 182.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 58, 5 )
+text = "Unit"
+align = 1
+
+[node name="trench_description" type="Label" parent="."]
+margin_left = 186.0
+margin_top = 30.0
+margin_right = 642.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 456, 5 )
+size_flags_horizontal = 3
+text = "Soil Description"
+align = 1
+valign = 1
+
+[node name="trench_geo_unit" type="Label" parent="."]
+margin_left = 646.0
+margin_top = 30.0
+margin_right = 704.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 58, 5 )
+text = "Geo Unit"
+align = 1
+
+[node name="trench_uscs" type="Label" parent="."]
+margin_left = 708.0
+margin_top = 30.0
+margin_right = 766.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 58, 5 )
+text = "USCS"
+align = 1
+
+[node name="trench_sample_no" type="Label" parent="."]
+margin_left = 770.0
+margin_top = 22.0
+margin_right = 828.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 58, 5 )
+text = "Sample 
+No."
+align = 1
+
+[node name="trench_moisture" type="Label" parent="."]
+margin_left = 832.0
+margin_top = 22.0
+margin_right = 890.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 58, 5 )
+text = "Moist
+%"
+align = 1
+
+[node name="trench_density" type="Label" parent="."]
+margin_left = 894.0
+margin_top = 13.0
+margin_right = 952.0
+margin_bottom = 61.0
+rect_min_size = Vector2( 58, 5 )
+text = "Dry 
+Density
+(pcf)"
+align = 1

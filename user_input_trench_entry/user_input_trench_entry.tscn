@@ -7,90 +7,81 @@ rect_min_size = Vector2( 952, 0 )
 size_flags_horizontal = 3
 
 [node name="trench_depth" type="LineEdit" parent="."]
-margin_right = 90.0
+margin_right = 58.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
-size_flags_horizontal = 3
 align = 1
 placeholder_text = "Depth"
 caret_blink = true
 
 [node name="trench_attitude" type="LineEdit" parent="."]
-margin_left = 94.0
-margin_right = 184.0
+margin_left = 62.0
+margin_right = 120.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
-size_flags_horizontal = 3
 align = 1
 placeholder_text = "Attitude"
 caret_blink = true
 
 [node name="trench_unit" type="LineEdit" parent="."]
-margin_left = 188.0
-margin_right = 278.0
+margin_left = 124.0
+margin_right = 182.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
-size_flags_horizontal = 3
 align = 1
 placeholder_text = "Unit"
 caret_blink = true
 
 [node name="trench_description" type="TextEdit" parent="."]
-margin_left = 282.0
-margin_right = 482.0
+margin_left = 186.0
+margin_right = 642.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 200, 75 )
-size_flags_horizontal = 0
-text = "Soil Descrioption"
+size_flags_horizontal = 3
 wrap_enabled = true
 caret_blink = true
 
 [node name="trench_geo_unit" type="LineEdit" parent="."]
-margin_left = 486.0
-margin_right = 576.0
+margin_left = 646.0
+margin_right = 704.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
-size_flags_horizontal = 3
 align = 1
 placeholder_text = "Geo Unit"
 caret_blink = true
 
 [node name="trench_uscs" type="LineEdit" parent="."]
-margin_left = 580.0
-margin_right = 670.0
+margin_left = 708.0
+margin_right = 766.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
-size_flags_horizontal = 3
 align = 1
 placeholder_text = "USCS"
 caret_blink = true
 
 [node name="trench_sample_no" type="LineEdit" parent="."]
-margin_left = 674.0
-margin_right = 764.0
+margin_left = 770.0
+margin_right = 828.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
-size_flags_horizontal = 3
 align = 1
 placeholder_text = "Sample No."
 caret_blink = true
 
 [node name="trench_moisture" type="LineEdit" parent="."]
-margin_left = 768.0
-margin_right = 858.0
+margin_left = 832.0
+margin_right = 890.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
-size_flags_horizontal = 3
 align = 1
 placeholder_text = "Moisture"
 caret_blink = true
 
 [node name="trench_density" type="LineEdit" parent="."]
-margin_left = 862.0
+margin_left = 894.0
 margin_right = 952.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
-size_flags_horizontal = 3
 align = 1
 placeholder_text = "Dry Density"
 caret_blink = true
