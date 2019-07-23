@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://tab_trench/tab_trench.gd" type="Script" id=1]
 [ext_resource path="res://tab_master/tab_master.tscn" type="PackedScene" id=2]
 [ext_resource path="res://user_input_entry/user_input_entry.tscn" type="PackedScene" id=3]
-[ext_resource path="res://user_input_trench_entry/user_input_trench_entry.tscn" type="PackedScene" id=4]
-[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://user_input_trench_title/user_input_trench_title.tscn" type="PackedScene" id=4]
+[ext_resource path="res://user_input_trench_entry/user_input_trench_entry.tscn" type="PackedScene" id=5]
+[ext_resource path="res://icon.png" type="Texture" id=6]
 
 [node name="tab_trench" type="Control"]
 anchor_right = 1.0
@@ -23,11 +24,11 @@ margin_bottom = 259.0
 
 [node name="mc" parent="tab_master/vbox" index="0"]
 margin_right = 952.0
-margin_bottom = 278.0
+margin_bottom = 505.0
 
 [node name="vbox" type="VBoxContainer" parent="tab_master/vbox/mc" index="0"]
 margin_right = 952.0
-margin_bottom = 278.0
+margin_bottom = 505.0
 
 [node name="trench_descriptions" type="HBoxContainer" parent="tab_master/vbox/mc/vbox"]
 editor/display_folded = true
@@ -218,20 +219,69 @@ margin_right = 470.0
 margin_left = 474.0
 margin_right = 474.0
 
-[node name="trench_data" type="VBoxContainer" parent="tab_master/vbox/mc/vbox"]
+[node name="trench_input_row" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 4 )]
+editor/display_folded = true
 margin_top = 174.0
-margin_right = 952.0
-margin_bottom = 249.0
+margin_bottom = 222.0
 
-[node name="trench_input_row" parent="tab_master/vbox/mc/vbox/trench_data" instance=ExtResource( 4 )]
+[node name="trench_depth" parent="tab_master/vbox/mc/vbox/trench_input_row" index="0"]
+margin_top = 17.0
+margin_bottom = 31.0
+
+[node name="trench_attitude" parent="tab_master/vbox/mc/vbox/trench_input_row" index="1"]
+margin_top = 17.0
+margin_bottom = 31.0
+
+[node name="trench_unit" parent="tab_master/vbox/mc/vbox/trench_input_row" index="2"]
+margin_top = 17.0
+margin_bottom = 31.0
+
+[node name="trench_description" parent="tab_master/vbox/mc/vbox/trench_input_row" index="3"]
+margin_top = 17.0
+margin_bottom = 31.0
+size_flags_horizontal = 1
+
+[node name="trench_geo_unit" parent="tab_master/vbox/mc/vbox/trench_input_row" index="4"]
+margin_top = 17.0
+margin_bottom = 31.0
+
+[node name="trench_uscs" parent="tab_master/vbox/mc/vbox/trench_input_row" index="5"]
+margin_top = 17.0
+margin_bottom = 31.0
+
+[node name="trench_sample_no" parent="tab_master/vbox/mc/vbox/trench_input_row" index="6"]
+margin_top = 8.0
+margin_bottom = 39.0
+
+[node name="trench_moisture" parent="tab_master/vbox/mc/vbox/trench_input_row" index="7"]
+margin_top = 8.0
+margin_bottom = 39.0
+
+[node name="trench_density" parent="tab_master/vbox/mc/vbox/trench_input_row" index="8"]
+margin_top = 0.0
+margin_bottom = 48.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="tab_master/vbox/mc/vbox"]
+editor/display_folded = true
+margin_top = 226.0
 margin_right = 952.0
+margin_bottom = 476.0
+rect_min_size = Vector2( 0, 250 )
+scroll_horizontal_enabled = false
+
+[node name="trench_data" type="VBoxContainer" parent="tab_master/vbox/mc/vbox/ScrollContainer"]
+margin_right = 952.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 952, 0 )
+
+[node name="trench_input_row" parent="tab_master/vbox/mc/vbox/ScrollContainer/trench_data" instance=ExtResource( 5 )]
 
 [node name="button_add_row" type="TextureButton" parent="tab_master/vbox/mc/vbox"]
-margin_top = 253.0
+margin_top = 480.0
 margin_right = 952.0
-margin_bottom = 278.0
+margin_bottom = 505.0
 rect_min_size = Vector2( 0, 25 )
-texture_normal = ExtResource( 5 )
+texture_normal = ExtResource( 6 )
 expand = true
 stretch_mode = 1
 
@@ -258,3 +308,5 @@ stretch_mode = 1
 [editable path="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_slope"]
 
 [editable path="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_trend"]
+
+[editable path="tab_master/vbox/mc/vbox/trench_input_row"]

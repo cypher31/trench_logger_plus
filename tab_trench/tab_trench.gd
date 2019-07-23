@@ -10,5 +10,5 @@ func _ready():
 	pass # Replace with function body.
 
 func add_row():
-	utility.add_data_row("user_input_trench_entry", $tab_master/vbox/mc/vbox/trench_data)
+	utility.add_data_row("user_input_trench_entry", $tab_master/vbox/mc/vbox/ScrollContainer/trench_data)
 	pass
