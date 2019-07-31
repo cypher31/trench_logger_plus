@@ -26,6 +26,7 @@ func _ready():
 
 func add_row():
 	utility.add_data_row("user_input_trench_entry", $tab_master/vbox/mc/vbox/ScrollContainer/trench_data)
+	update_trench_dict()
 	pass
 	
 
@@ -42,7 +43,17 @@ func update_trench_dict():
 	trench_slope = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_slope/user_input.get_text()
 	trench_trend = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_trend/user_input.get_text()
 	
-	trench_row_data
+	var trench_data = $tab_master/vbox/mc/vbox/ScrollContainer/trench_data
+	var trench_rows = trench_data.get_children()
 	
+	for trench_row in trench_rows:
+		for data_item in trench_row.get_children():
+			trench_row_data[data_item.get_name()] = data_item.get_text()
+			pass
+		trench_dict[trench_row.get_name()] = trench_row_data.duplicate()
+		
+#		trench_row_data.clear()
+		pass
 	
+	print(trench_dict["trench_input_row"])
 	return
