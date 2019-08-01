@@ -7,36 +7,17 @@ var project_name : String
 var user_initials : String
 var working_dir : String
 
-var load_width : String
-var load_length : String
-var pressure : String
-var x_loc : String
-var y_loc : String
-var resolution : String
-
-var wall_height : String
-var wall_resolution : String
-
-var poissons : String
-
-var dictionary_save : Dictionary = {
+var dictionary_project_data : Dictionary = {
 	"project_number" : project_number,
 	"project_name" : project_name,
 	"user_initials" : user_initials,
 	"working_dir" : working_dir,
-	"load_width" : load_width,
-	"load_length" : load_length,
-	"pressure" : pressure,
-	"x_loc" : x_loc,
-	"y_loc" : y_loc,
-	"resolution" : resolution,
-	"wall_height" : wall_height,
-	"wall_resolution" : wall_resolution,
-	"poissons" : poissons
 	}
 	
-var dictionary_load : Dictionary = {}
+var dictionary_trench_data : Dictionary = {
 
+	}
+	
 signal save_project
 
 # Called when the node enters the scene tree for the first time.
@@ -60,9 +41,11 @@ func save_data():
 		var save_project = File.new()
 		save_project.open(working_dir + "/" + save_file_name + ".blep", File.WRITE)
 		
-		var data = dictionary_save
+		var data_project : Dictionary = dictionary_project_data
+		var data_trench : Dictionary = dictionary_trench_data
 		
-		save_project.store_line(to_json(data))
+		save_project.store_line(to_json(data_project))
+		save_project.store_line(to_json(data_trench))
 		save_project.close()
 	else: #throw error - call popup
 		get_tree().get_root().get_node("main/gui/set_working_dir_warning").popup_centered()

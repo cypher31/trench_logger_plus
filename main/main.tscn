@@ -24,10 +24,4 @@ margin_top = 7.0
 margin_right = 1031.0
 margin_bottom = 607.0
 
-[node name="Project" parent="PanelContainer/gui/mc/hbox/vbox/tab_cont" index="0"]
-visible = true
-
-[node name="TP-1" parent="PanelContainer/gui/mc/hbox/vbox/tab_cont" index="1"]
-visible = false
-
 [editable path="PanelContainer/gui"]

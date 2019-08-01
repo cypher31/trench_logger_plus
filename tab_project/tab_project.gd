@@ -20,8 +20,6 @@ func _ready():
 	button_new_trench.connect("button_up", self, "new_trench")
 	pop_up_new_trench.connect("confirmed", self, "new_trench_pop_up")
 	
-	$tab_master/vbox/mc/vbox/input_proj_units/user_input.add_item("Imperial")
-	$tab_master/vbox/mc/vbox/input_proj_units/user_input.add_item("Metric")
 	pass # Replace with function body.
 
 func file_dialog():

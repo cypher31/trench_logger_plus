@@ -22,11 +22,11 @@ var trench_dict : Dictionary = {
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$tab_master/vbox/mc/vbox/button_add_row.connect("button_up", self, "add_row")
+	$tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/button_script.connect("button_up", self, "new_script")
 	pass # Replace with function body.
 
 func add_row():
 	utility.add_data_row("user_input_trench_entry", $tab_master/vbox/mc/vbox/ScrollContainer/trench_data)
-	update_trench_dict()
 	pass
 	
 
@@ -50,10 +50,17 @@ func update_trench_dict():
 		for data_item in trench_row.get_children():
 			trench_row_data[data_item.get_name()] = data_item.get_text()
 			pass
-		trench_dict[trench_row.get_name()] = trench_row_data.duplicate()
+		trench_dict["trench_row_" + str(trench_row.get_index())] = trench_row_data.duplicate()
 		
-#		trench_row_data.clear()
+		trench_row_data.clear()
 		pass
+	return trench_dict
+
+
+func new_script():
+	var trench_name : String = get_name()
+	data_management.dictionary_trench_data[trench_name] = update_trench_dict() #send data to be saved
 	
-	print(trench_dict["trench_input_row"])
-	return
+	generate_script(data_management.dictionary_trench_data[trench_name])
+	
+	pass
