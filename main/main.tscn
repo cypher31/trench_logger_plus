@@ -24,4 +24,7 @@ margin_top = 7.0
 margin_right = 1031.0
 margin_bottom = 607.0
 
+[node name="mc" parent="PanelContainer/gui" index="0"]
+editor/display_folded = true
+
 [editable path="PanelContainer/gui"]

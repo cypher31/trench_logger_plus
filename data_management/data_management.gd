@@ -48,6 +48,6 @@ func save_data():
 		save_project.store_line(to_json(data_trench))
 		save_project.close()
 	else: #throw error - call popup
-		get_tree().get_root().get_node("main/gui/set_working_dir_warning").popup_centered()
+		get_tree().get_root().get_node("main/PanelContainer/gui/set_working_dir_warning").popup_centered()
 	return
 
