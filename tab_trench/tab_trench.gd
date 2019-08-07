@@ -66,6 +66,7 @@ func update_trench_dict():
 		trench_dict["trench_row_" + str(trench_row.get_index())] = trench_row_data.duplicate()
 		
 		trench_row_data.clear()
+		print(trench_dict)
 		pass
 	return [trench_project_dict, trench_dict]
 

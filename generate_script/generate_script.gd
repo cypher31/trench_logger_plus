@@ -1,9 +1,5 @@
 extends Node
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -15,7 +11,8 @@ func new_script(trench_specific_data, trench_row_data):
 	var date = OS.get_date()
 	var date_formatted = str(date["month"]) + "/" + str(date["day"]) + "/" + str(date["year"])
 	var script_dict : Dictionary = {} #script dictionary
-	
+	var script_row_data : Dictionary {} #row data manipulated to be printed
+
 	var trench_number = trench_specific_data["trench_number"]
 
 	script_dict[script_dict.size() + 1] = "; created " + date_formatted #key denotes the line number
@@ -45,7 +42,13 @@ func new_script(trench_specific_data, trench_row_data):
 	script_dict[script_dict.size() + 1] = "Surface Slope: %s deg." % trench_specific_data["trench_slope"]
 	script_dict[script_dict.size() + 1] = "Trend: %s" % trench_specific_data["trench_trend"]
 	script_dict[script_dict.size() + 1] = "ucs m .2,.2" #something funky was up with this when messing at the office
-	
+	#Everything above this line does not require a location
+	var row_data_fixed : Array = row_data(trench_row_data)
+
+	for data in row_data_fixed:
+		
+		pass
+
 	#reference
 #	trench_project_dict["trench_date"] = trench_date
 #	trench_project_dict["trench_number"] = trench_number
@@ -58,6 +61,5 @@ func new_script(trench_specific_data, trench_row_data):
 #	trench_project_dict["trench_scale"] = trench_scale
 #	trench_project_dict["trench_slope"] = trench_slope
 #	trench_project_dict["trench_trend"] = trench_trend
-	
-	print(script_dict)
+
 	return
