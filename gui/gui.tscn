@@ -99,9 +99,6 @@ visible = false
 margin_top = 24.0
 margin_right = 0.0
 
-[node name="vbox_left" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions" index="0"]
-editor/display_folded = false
-
 [node name="set_working_dir_warning" type="AcceptDialog" parent="."]
 margin_right = 83.0
 margin_bottom = 58.0

@@ -39,13 +39,13 @@ func save_data():
 	#check if working directory has been selected...
 	if working_dir != "":
 		var save_project = File.new()
-		save_project.open(working_dir + "/" + save_file_name + ".blep", File.WRITE)
-		
-		var data_project : Dictionary = dictionary_project_data
-		var data_trench : Dictionary = dictionary_trench_data
-		
-		save_project.store_line(to_json(data_project))
-		save_project.store_line(to_json(data_trench))
+#		save_project.open(working_dir + "/" + save_file_name + ".blep", File.WRITE)
+#
+#		var data_project : Dictionary = dictionary_project_data
+#		var data_trench : Dictionary = dictionary_trench_data
+#
+#		save_project.store_line(to_json(data_project))
+#		save_project.store_line(to_json(data_trench))
 		save_project.close()
 	else: #throw error - call popup
 		get_tree().get_root().get_node("main/PanelContainer/gui/set_working_dir_warning").popup_centered()

@@ -51,20 +51,18 @@ func new_script(trench_specific_data, trench_row_data):
 	
 	script_dict[script_dict.size() + 1] = "-mtext 8.1,.9 s AR10 jk tl w 1.9 Total Depth: %s \r\n Groundwater: %s \r\n Backfilled: %s" % [trench_specific_data["trench_total_depth"], trench_specific_data["trench_groundwater"], "Enter Date \r\n"]
 	
-	print(script_dict)
-	#reference
-#	trench_project_dict["trench_date"] = trench_date
-#	trench_project_dict["trench_number"] = trench_number
-#	trench_project_dict["trench_location"] = trench_location
-#	trench_project_dict["trench_logged_by"] = trench_logged_by
-#	trench_project_dict["trench_equipment"] = trench_equipment
-#	trench_project_dict["trench_total_depth"] = trench_total_depth
-#	trench_project_dict["trench_elevation"] = trench_elevation
-#	trench_project_dict["trench_groundwater"] = trench_groundwater
-#	trench_project_dict["trench_scale"] = trench_scale
-#	trench_project_dict["trench_slope"] = trench_slope
-#	trench_project_dict["trench_trend"] = trench_trend
+	#generate script file
+	var file = File.new()
+	var file_date = str(date["month"]) + "_" + str(date["day"]) + "_" + str(date["year"])
+	var file_name = data_management.working_dir + "/" + file_date + "_" + trench_number + "_script.txt"
 
+	file.open(file_name, file.WRITE)
+
+	for i in range(1, script_dict.size()):
+		file.store_string(str(script_dict[i]))
+		pass
+	
+	file.close()
 	return
 
 
@@ -102,6 +100,7 @@ func row_data(data):
 		i_x += 1
 		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10 j tc w %s \r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_density"]]
 		
+		i_x = 0
 		i_y += 1
 		pass
 	return data_fixed
