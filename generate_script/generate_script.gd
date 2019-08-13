@@ -58,11 +58,16 @@ func new_script(trench_specific_data, trench_row_data):
 	
 	#generate trench outline
 	var trench_outline : Dictionary = new_trench_outline(trench_specific_data["trench_total_depth"])
-
+	
+	script_dict[script_dict.size() + 1] = "pline\r\n"
+	
 	for data in trench_outline:
 		script_dict[script_dict.size() + 1] = trench_outline[data]
 		pass
-
+	
+	script_dict[script_dict.size() + 1] = "\r\n"
+	script_dict[script_dict.size() + 1] = "\r\n"
+	
 	file.open(file_name, file.WRITE)
 
 	for i in range(1, script_dict.size() + 1):
@@ -115,22 +120,25 @@ func row_data(data):
 func new_trench_outline(td): #td = total depth of trench
 	var outline_points : Dictionary = {}
 	var start_point : Vector2 = Vector2(1.0, 2.7)
+	var end_point : Vector2
 	var trench_center : Vector2
 	var total_side_lines
 	var lines_left_chosen : Dictionary = {}
 	var lines_bottom_chosen : Dictionary = {}
 	var lines_right_chosen : Dictionary = {}
 	var total_bot_lines = 3 #constant
+	
+	var current_pos_left_y : float = 2.7
+	var current_pos_right_y : float
 
 	total_side_lines = int(td)
 
 	#assign lines
 
-	var lines_left : Array = [Vector2(0.0, 0.2), Vector2(0.0069801, 0.1998782), Vector2(0.0139513, 0.1995128), Vector2(0.02092, 0.1989029),Vector2(0.0278937, 0.1980453), Vector2(0.0348649, 0.1969376)]
-	var lines_right : Array = [Vector2(0.0, 0.2), Vector2(0.0069801, 0.1998782), Vector2(0.02092, 0.1989029),Vector2(0.0278937, 0.1980453), Vector2(0.0348649, 0.1969376)\
-	, Vector2(0.0415823, 0.1956295), Vector2(0.0483844, 0.1940591), Vector2(0.0551275, 0.1922523), Vector2(0.0618037, 0.1902112), Vector2(0.0684048, 0.1879382)]
+#	var lines_left : Array = [Vector2(0.0, 0.2), Vector2(0.0069801, 0.1998782), Vector2(0.0139513, 0.1995128), Vector2(0.02092, 0.1989029),Vector2(0.0278937, 0.1980453), Vector2(0.0348649, 0.1969376)]
+#	var lines_right : Array = [Vector2(0.0, 0.2), Vector2(0.0069801, 0.1998782), Vector2(0.02092, 0.1989029),Vector2(0.0278937, 0.1980453), Vector2(0.0348649, 0.1969376)\
+#	, Vector2(0.0415823, 0.1956295), Vector2(0.0483844, 0.1940591), Vector2(0.0551275, 0.1922523), Vector2(0.0618037, 0.1902112), Vector2(0.0684048, 0.1879382)]
 	
-
 	#calc center of trench
 	if int(td) <= 5:
 		trench_center = start_point + Vector2((5 / 5) / 2, -5/5)
@@ -141,15 +149,35 @@ func new_trench_outline(td): #td = total depth of trench
 	elif int(td) > 15:
 		trench_center = start_point + Vector2((20 / 5) / 2, -15/5)
 	
+	end_point = start_point + trench_center
+	
+	#assign minimum unit vectors
+	var unit_left_length = 0.2
+	var unit_right_length = 0.2
+	
+	var unit_left_x : float = 0.707
+	var unit_left_y : float = -0.707
+	var unit_right_x : float = 0.707
+	var unit_right_y : float = 0.707
+	
+	var multiplier : float = 0.1
+	
+	var left_end_generator : float = start_point.y - int(td) / 5
+	var right_end_generator : float = start_point.y
+	
+	var i : int = 1
 	#create trench left side
-	for i in range(1, total_side_lines + 1):
-		var random_num = randi() % lines_left.size()
+	while current_pos_left_y >= left_end_generator * (1.0 + multiplier):
+		var rand_dir_x = rand_range(0, unit_left_x)
+		var rand_dir_y = rand_range(0, unit_left_y)
 
 		if lines_left_chosen.size() == 0:
 			lines_left_chosen[1] = start_point #drawing needs to start @ 1 inch
 		else:
-			lines_left_chosen[lines_left_chosen.size() + 1] = lines_left[random_num] * Vector2(1.0, -1.0) + lines_left_chosen[i-1] #drawing needs to start @ 1 inch & be added to the last drawn line
-
+			lines_left_chosen[lines_left_chosen.size() + 1] = unit_left_length * Vector2(rand_dir_x, rand_dir_y) + lines_left_chosen[i - 1] #drawing needs to start @ 1 inch & be added to the last drawn line
+		
+		i += 1
+		current_pos_left_y = lines_left_chosen[i - 1].y
 		pass
 	
 	var left_final_depth = lines_left_chosen[lines_left_chosen.size()]
@@ -157,27 +185,36 @@ func new_trench_outline(td): #td = total depth of trench
 	var distance_to_bottom = abs(bottom_elevation - left_final_depth.y)
 	
 	#create trench bottom
+	var j : int = 1
 	for i in range(0,3):
-		var rand_num = randi() % lines_right.size()
+		var rand_dir_x = rand_range(0, unit_right_x)
+		var rand_dir_y = rand_range(0, unit_right_y)
 		
 		if i == 0:
-			lines_bottom_chosen[lines_bottom_chosen.size() + 1] = trench_center - Vector2(0.25, 0)
+			lines_bottom_chosen[lines_bottom_chosen.size() + 1] = Vector2(lines_left_chosen[lines_left_chosen.size()].x + 0.25, bottom_elevation)
 		elif i == 1:
-			lines_bottom_chosen[lines_bottom_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size()] + Vector2(0.25, 0)
+			lines_bottom_chosen[lines_bottom_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size()] + Vector2(0.5, 0)
 		elif i == 2:
-			lines_bottom_chosen[lines_bottom_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size()] + lines_right[rand_num]
-			lines_right_chosen[lines_right_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size()] + lines_right[rand_num]
+			lines_bottom_chosen[lines_bottom_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size()] + unit_right_length * Vector2(rand_dir_x, rand_dir_y)
+			lines_right_chosen[lines_right_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size()] + unit_right_length * Vector2(rand_dir_x, rand_dir_y)
+			
+			j += 1
+			current_pos_right_y = lines_right_chosen[j - 1].y
 		pass
 
 	#create trench right side
-	for i in range(1, total_side_lines - 1):
-		var random_num = randi() % lines_right.size()
-
-		lines_right_chosen[lines_right_chosen.size() + 1] = lines_right[random_num] + lines_right_chosen[lines_right_chosen.size()] #drawing needs to start @ 1 inch & be added to the last drawn line
+	while current_pos_right_y <= right_end_generator * (1.0 - multiplier):
+		var rand_dir_x = rand_range(0, unit_right_x)
+		var rand_dir_y = rand_range(0, unit_right_y)
+		
+		lines_right_chosen[lines_right_chosen.size() + 1] = unit_right_length * Vector2(rand_dir_x, rand_dir_y) + lines_right_chosen[lines_right_chosen.size()] #drawing needs to start @ 1 inch & be added to the last drawn line
+		
+		j += 1
+		current_pos_right_y = lines_right_chosen[j - 1].y
 		pass
 
 	#connect last line
-	lines_right_chosen[lines_right_chosen.size() + 1] = start_point + Vector2(trench_center.x * 2, 0)
+	lines_right_chosen[lines_right_chosen.size() + 1] = Vector2(lines_right_chosen[lines_right_chosen.size()].x + 0.25, start_point.y)
 	
 	#create dictionary
 	for i in range(1, lines_left_chosen.size() + 1):
