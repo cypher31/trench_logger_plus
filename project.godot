@@ -23,6 +23,7 @@ config/icon="res://icon.png"
 
 utility="*res://utility.gd"
 data_management="*res://data_management/data_management.gd"
+generate_script="*res://generate_script/generate_script.gd"
 
 [display]
 

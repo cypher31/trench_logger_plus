@@ -24,22 +24,24 @@ margin_bottom = 259.0
 
 [node name="mc" parent="tab_master/vbox" index="0"]
 margin_right = 964.0
-margin_bottom = 505.0
+margin_bottom = 455.0
 
 [node name="vbox" type="VBoxContainer" parent="tab_master/vbox/mc" index="0"]
 margin_right = 964.0
-margin_bottom = 505.0
+margin_bottom = 455.0
 
 [node name="trench_descriptions" type="HBoxContainer" parent="tab_master/vbox/mc/vbox"]
 margin_right = 964.0
 margin_bottom = 170.0
 
 [node name="vbox_left" type="VBoxContainer" parent="tab_master/vbox/mc/vbox/trench_descriptions"]
+editor/display_folded = true
 margin_right = 480.0
 margin_bottom = 170.0
 size_flags_horizontal = 3
 
 [node name="user_input_trench_date" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" instance=ExtResource( 3 )]
+editor/display_folded = true
 margin_right = 480.0
 size_flags_horizontal = 1
 
@@ -139,7 +141,6 @@ margin_left = 480.0
 margin_right = 480.0
 
 [node name="vbox_right" type="VBoxContainer" parent="tab_master/vbox/mc/vbox/trench_descriptions"]
-editor/display_folded = true
 margin_left = 484.0
 margin_right = 964.0
 margin_bottom = 170.0
@@ -223,6 +224,12 @@ margin_right = 476.0
 margin_left = 480.0
 margin_right = 480.0
 
+[node name="button_script" type="Button" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right"]
+margin_top = 145.0
+margin_right = 480.0
+margin_bottom = 165.0
+text = "MAKE SCRIPT"
+
 [node name="trench_input_row" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 4 )]
 editor/display_folded = true
 margin_top = 174.0
@@ -269,8 +276,8 @@ margin_bottom = 48.0
 [node name="ScrollContainer" type="ScrollContainer" parent="tab_master/vbox/mc/vbox"]
 margin_top = 226.0
 margin_right = 964.0
-margin_bottom = 476.0
-rect_min_size = Vector2( 0, 250 )
+margin_bottom = 426.0
+rect_min_size = Vector2( 0, 200 )
 scroll_horizontal_enabled = false
 
 [node name="trench_data" type="VBoxContainer" parent="tab_master/vbox/mc/vbox/ScrollContainer"]
@@ -281,10 +288,11 @@ rect_min_size = Vector2( 952, 0 )
 [node name="trench_input_row" parent="tab_master/vbox/mc/vbox/ScrollContainer/trench_data" instance=ExtResource( 5 )]
 
 [node name="button_add_row" type="TextureButton" parent="tab_master/vbox/mc/vbox"]
-margin_top = 480.0
-margin_right = 964.0
-margin_bottom = 505.0
-rect_min_size = Vector2( 0, 25 )
+margin_top = 430.0
+margin_right = 952.0
+margin_bottom = 455.0
+rect_min_size = Vector2( 952, 25 )
+size_flags_horizontal = 0
 texture_normal = ExtResource( 6 )
 expand = true
 stretch_mode = 1

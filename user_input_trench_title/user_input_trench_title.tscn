@@ -3,7 +3,7 @@
 [node name="trench_input_row" type="HBoxContainer"]
 margin_right = 952.0
 margin_bottom = 75.0
-rect_min_size = Vector2( 952, 0 )
+rect_min_size = Vector2( 800, 0 )
 size_flags_horizontal = 3
 
 [node name="trench_depth" type="Label" parent="."]

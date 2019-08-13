@@ -42,8 +42,6 @@ custom_styles/panel = SubResource( 2 )
 tab_align = 0
 
 [node name="Project" parent="mc/hbox/vbox/tab_cont" instance=ExtResource( 2 )]
-editor/display_folded = true
-visible = false
 anchor_right = 1.0
 margin_top = 24.0
 margin_right = 0.0
@@ -55,6 +53,7 @@ margin_right = 0.0
 rect_min_size = Vector2( 0, 0 )
 
 [node name="vbox" parent="mc/hbox/vbox/tab_cont/Project/tab_master" index="0"]
+editor/display_folded = true
 margin_left = 0.0
 margin_right = 952.0
 margin_bottom = 223.0
@@ -67,6 +66,14 @@ margin_right = 952.0
 rect_min_size = Vector2( 0, 0 )
 
 [node name="input_proj_number" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="0"]
+editor/display_folded = false
+margin_right = 952.0
+
+[node name="input_label" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox/input_proj_number" index="0"]
+margin_right = 474.0
+
+[node name="user_input" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox/input_proj_number" index="1"]
+margin_left = 478.0
 margin_right = 952.0
 
 [node name="input_proj_name" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="1"]
@@ -75,92 +82,22 @@ margin_right = 952.0
 [node name="input_user_initials" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="2"]
 margin_right = 952.0
 
-[node name="input_proj_units" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="3"]
+[node name="input_working_directory" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="3"]
 margin_right = 952.0
 
-[node name="input_working_directory" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="4"]
+[node name="button_working_dir" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="4"]
 margin_right = 952.0
 
-[node name="button_working_dir" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="5"]
+[node name="button_save_data" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="5"]
 margin_right = 952.0
 
-[node name="button_save_data" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="6"]
-margin_right = 952.0
-
-[node name="button_add_trench" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="7"]
+[node name="button_add_trench" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="6"]
 margin_right = 952.0
 
 [node name="TP-1" parent="mc/hbox/vbox/tab_cont" instance=ExtResource( 3 )]
+visible = false
 margin_top = 24.0
 margin_right = 0.0
-
-[node name="vbox" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master" index="0"]
-margin_right = 964.0
-margin_bottom = 515.0
-
-[node name="mc" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox" index="0"]
-margin_right = 964.0
-margin_bottom = 455.0
-
-[node name="vbox" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc" index="0"]
-margin_right = 964.0
-margin_bottom = 455.0
-
-[node name="trench_descriptions" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox" index="0"]
-margin_right = 964.0
-
-[node name="vbox_left" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions" index="0"]
-margin_right = 480.0
-
-[node name="user_input_trench_date" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" index="0"]
-margin_right = 480.0
-
-[node name="user_input_trench_number" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" index="1"]
-margin_right = 480.0
-
-[node name="user_input_location" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" index="2"]
-margin_right = 480.0
-
-[node name="user_input_logged_by" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" index="3"]
-margin_right = 480.0
-
-[node name="user_input_equipment" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" index="4"]
-margin_right = 480.0
-
-[node name="user_input_total_depth" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" index="5"]
-margin_right = 480.0
-
-[node name="vbox_right" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions" index="1"]
-margin_left = 484.0
-margin_right = 964.0
-
-[node name="user_input_elevation" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions/vbox_right" index="0"]
-margin_right = 480.0
-
-[node name="user_input_groundwater" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions/vbox_right" index="1"]
-margin_right = 480.0
-
-[node name="user_input_scale" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions/vbox_right" index="2"]
-margin_right = 480.0
-
-[node name="user_input_slope" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions/vbox_right" index="3"]
-margin_right = 480.0
-
-[node name="user_input_trend" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox/trench_descriptions/vbox_right" index="4"]
-margin_right = 480.0
-
-[node name="trench_input_row" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox" index="1"]
-margin_right = 964.0
-
-[node name="ScrollContainer" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox" index="2"]
-margin_right = 964.0
-margin_bottom = 426.0
-rect_min_size = Vector2( 0, 200 )
-
-[node name="button_add_row" parent="mc/hbox/vbox/tab_cont/TP-1/tab_master/vbox/mc/vbox" index="3"]
-margin_top = 430.0
-margin_right = 964.0
-margin_bottom = 455.0
 
 [node name="set_working_dir_warning" type="AcceptDialog" parent="."]
 margin_right = 83.0
@@ -181,6 +118,8 @@ show_line_numbers = true
 [editable path="mc/hbox/vbox/tab_cont/Project"]
 
 [editable path="mc/hbox/vbox/tab_cont/Project/tab_master"]
+
+[editable path="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox/input_proj_number"]
 
 [editable path="mc/hbox/vbox/tab_cont/TP-1"]
 
