@@ -51,11 +51,6 @@ func new_script(trench_specific_data, trench_row_data):
 	
 	script_dict[script_dict.size() + 1] = "-mtext 8.1,.9 s AR10 j tl w 1.9 Total Depth: %s\r\n Groundwater: %s\r\n Backfilled: %s" % [trench_specific_data["trench_total_depth"], trench_specific_data["trench_groundwater"], "Enter Date\r\n\r\n"]
 
-	#generate script file
-	var file = File.new()
-	var file_date = str(date["month"]) + "_" + str(date["day"]) + "_" + str(date["year"])
-	var file_name = data_management.working_dir + "/" + file_date + "_" + trench_number + "_script.txt"
-	
 	#generate trench outline
 	var trench_outline : Dictionary = new_trench_outline(trench_specific_data["trench_total_depth"])
 	
@@ -65,8 +60,48 @@ func new_script(trench_specific_data, trench_row_data):
 		script_dict[script_dict.size() + 1] = trench_outline[data]
 		pass
 	
+	#extra clear
 	script_dict[script_dict.size() + 1] = "\r\n"
-	script_dict[script_dict.size() + 1] = "\r\n"
+	
+	#generate geoatt within trench outline
+	var k : int = 0
+	
+	var trench_outline_start = Vector2(trench_outline[1].strip_edges().split_floats(",")[0], trench_outline[1].strip_edges().split_floats(",")[1])
+	var trench_outline_end = Vector2(trench_outline[trench_outline.size()].strip_edges().split_floats(",")[0], trench_outline[trench_outline.size()].strip_edges().split_floats(",")[1])
+
+	var trench_centerline = (trench_outline_end + trench_outline_start) / 2
+
+	var last_depth : float = trench_centerline.y
+	
+	for k in range(0, trench_row_data.size()):
+		var x_pos : float = trench_centerline.x
+		var y_pos_next : float
+
+		if (k + 1) == trench_row_data.size():
+			y_pos_next = trench_outline_start.y - float(trench_specific_data["trench_total_depth"]) / 5
+		else:
+			y_pos_next = (float(trench_row_data["trench_row_" + str(k+1)]["trench_depth"]) / 5)
+
+		var y_pos : float = (last_depth + y_pos_next) / 2
+		
+		if trench_row_data["trench_row_" + str(k)]["trench_unit"] != "-":
+			script_dict[script_dict.size() + 1] = "clayer 0/r/n"
+			script_dict[script_dict.size() + 1] = "-Insert/r/n"
+			script_dict[script_dict.size() + 1] = "geoatt/r/n"
+			script_dict[script_dict.size() + 1] = "%s,%s/r/n" % [x_pos, y_pos]
+			script_dict[script_dict.size() + 1] = "1/r/n"
+			script_dict[script_dict.size() + 1] = "1/r/n"
+			script_dict[script_dict.size() + 1] = "0/r/n"
+			script_dict[script_dict.size() + 1] = (trench_row_data["trench_row_" + str(k)]["trench_unit"]) + "/r/n"
+			
+			last_depth = last_depth - float(trench_row_data["trench_row_" + str(k)]["trench_depth"]) / 5
+		k += 1
+		pass
+	
+	#generate script file
+	var file = File.new()
+	var file_date = str(date["month"]) + "_" + str(date["day"]) + "_" + str(date["year"])
+	var file_name = data_management.working_dir + "/" + file_date + "_" + trench_number + "_script.txt"
 	
 	file.open(file_name, file.WRITE)
 
@@ -162,9 +197,9 @@ func new_trench_outline(td): #td = total depth of trench
 	
 	var multiplier : float = 0.25
 	
-	var left_end_generator : float = start_point.y - int(td) / 5
+	var left_end_generator : float = start_point.y - float(td) / 5
 	var right_end_generator : float = start_point.y
-	print(left_end_generator)
+
 	var i : int = 2
 	#create trench left side
 	while current_pos_left_y >= left_end_generator * (1.0 + multiplier):
