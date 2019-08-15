@@ -160,19 +160,20 @@ func new_trench_outline(td): #td = total depth of trench
 	var unit_right_x : float = 0.707
 	var unit_right_y : float = 0.707
 	
-	var multiplier : float = 0.1
+	var multiplier : float = 0.25
 	
 	var left_end_generator : float = start_point.y - int(td) / 5
 	var right_end_generator : float = start_point.y
-	
-	var i : int = 1
+	print(left_end_generator)
+	var i : int = 2
 	#create trench left side
 	while current_pos_left_y >= left_end_generator * (1.0 + multiplier):
 		var rand_dir_x = rand_range(0, unit_left_x)
-		var rand_dir_y = rand_range(0, unit_left_y)
+		var rand_dir_y = rand_range(unit_left_y, 0)
 
 		if lines_left_chosen.size() == 0:
-			lines_left_chosen[1] = start_point #drawing needs to start @ 1 inch
+			lines_left_chosen[1] = start_point - Vector2(0.25, 0) #drawing needs to start @ 1 inch
+			lines_left_chosen[2] = start_point
 		else:
 			lines_left_chosen[lines_left_chosen.size() + 1] = unit_left_length * Vector2(rand_dir_x, rand_dir_y) + lines_left_chosen[i - 1] #drawing needs to start @ 1 inch & be added to the last drawn line
 		
@@ -215,6 +216,7 @@ func new_trench_outline(td): #td = total depth of trench
 
 	#connect last line
 	lines_right_chosen[lines_right_chosen.size() + 1] = Vector2(lines_right_chosen[lines_right_chosen.size()].x + 0.25, start_point.y)
+	lines_right_chosen[lines_right_chosen.size() + 1] = lines_right_chosen[lines_right_chosen.size()] + Vector2(0.25, 0)
 	
 	#create dictionary
 	for i in range(1, lines_left_chosen.size() + 1):
