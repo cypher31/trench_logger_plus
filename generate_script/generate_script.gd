@@ -152,8 +152,8 @@ func new_trench_outline(td): #td = total depth of trench
 	end_point = start_point + trench_center
 	
 	#assign minimum unit vectors
-	var unit_left_length = 0.2
-	var unit_right_length = 0.2
+	var unit_left_length = 0.5
+	var unit_right_length = 0.5
 	
 	var unit_left_x : float = 0.707
 	var unit_left_y : float = -0.707
