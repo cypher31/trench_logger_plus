@@ -8,7 +8,9 @@ func _ready():
 	var file_dialog_popup = $tab_master/vbox/mc/vbox/button_working_dir/FileDialog
 	
 	var save_button = $tab_master/vbox/mc/vbox/button_save_data
-	
+	var load_button = $tab_master/vbox/mc/vbox/button_load_data
+	var load_file_dialog = $tab_master/vbox/mc/vbox/button_load_data/file_search
+
 	var button_new_trench = $tab_master/vbox/mc/vbox/button_add_trench
 	var pop_up_new_trench = $tab_master/vbox/mc/vbox/button_add_trench/new_trench_pop
 	
@@ -16,7 +18,10 @@ func _ready():
 	file_dialog_popup.connect("dir_selected", self, "set_working_dir")
 	
 	save_button.connect("button_up", self, "save_data")
+	load_button.connect("button_up", self, "load_data")
 	
+	load_file_dialog.connect("file_selected", self, "set_file_to_load")
+
 	button_new_trench.connect("button_up", self, "new_trench")
 	pop_up_new_trench.connect("confirmed", self, "new_trench_pop_up")
 	
@@ -36,6 +41,16 @@ func set_working_dir(dir):
 
 func save_data():
 	data_management.emit_signal("save_project")
+	pass
+
+func load_data():
+	var popup = $tab_master/vbox/mc/vbox/button_load_data/file_search
+	
+	popup.popup_centered()
+	pass
+
+func set_file_to_load(file):
+	data_management.load_data(file)
 	pass
 
 func new_trench():
