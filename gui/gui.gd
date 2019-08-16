@@ -28,13 +28,13 @@ func _ready():
 
 	#for data management
 	data_management.connect("save_project", self, "save_data")
-#
+	data_management.connect("load_project", self, "load_data")	
+
 	project_name = $mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox/input_proj_name/user_input
 	project_number = $mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox/input_proj_number/user_input
 	user_initials = $mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox/input_user_initials/user_input
 	working_dir = $mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox/input_working_directory/user_input
-	
-	save_data()
+
 	pass # Replace with function body.
 
 func save_data():
@@ -46,6 +46,21 @@ func save_data():
 	data_management.dictionary_project_data["user_initials"] = data_management.user_initials
 	data_management.working_dir = working_dir.get_text()
 	data_management.dictionary_project_data["working_dir"] = data_management.working_dir
-	print(project_name.get_text())
+	
+	for child in $mc/hbox/vbox/tab_cont.get_children():
+		if child.get_name() != "Project":
+			child.update_trench_dict()
+			pass
+		pass
+	
 	data_management.save_data()
+	pass
+	
+func load_data():
+	project_name.set_text(data_management.dictionary_project_data["project_name"])
+	project_number.set_text(data_management.dictionary_project_data["project_number"])
+	user_initials.set_text(data_management.dictionary_project_data["user_initials"])
+	working_dir.set_text(data_management.dictionary_project_data["working_dir"])
+	
+	utility.output_node.set_text("Project Load Completed")
 	pass

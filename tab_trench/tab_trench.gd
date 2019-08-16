@@ -24,6 +24,8 @@ func _ready():
 	$tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/button_script.connect("button_up", self, "new_script")
 	
 	$tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_number/user_input.set_text(get_name())
+	
+	data_management.connect("save_project", self, "update_trench_dict")
 	pass # Replace with function body.
 
 func add_row():
@@ -71,6 +73,9 @@ func update_trench_dict():
 		
 		trench_row_data.clear()
 		pass
+	
+	var trench_name : String = get_name()
+	data_management.dictionary_trench_data[trench_name] = [trench_project_dict, trench_dict]
 	return [trench_project_dict, trench_dict]
 
 
@@ -81,5 +86,4 @@ func new_script():
 	var data = data_management.dictionary_trench_data[trench_name]
 	
 	generate_script.new_script(data[0], data[1])
-	
 	pass

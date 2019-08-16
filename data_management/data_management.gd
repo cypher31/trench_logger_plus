@@ -1,5 +1,7 @@
 extends Node
 
+var got_project_data = false
+
 var working_directory : String
 
 var project_number : String
@@ -19,6 +21,7 @@ var dictionary_trench_data : Dictionary = {
 	}
 	
 signal save_project
+signal load_project
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,20 +37,61 @@ func save_data():
 	var save_min = save_time["minute"]
 	
 	var save_file_name = str(save_year) +"_"+ str(save_month) +"_"+ str(save_day) +"_"+ str(save_hour) +"_"+ str(save_min) +"_"+ str(project_number)
-	
+
 	#create save file
 	#check if working directory has been selected...
 	if working_dir != "":
 		var save_project = File.new()
-#		save_project.open(working_dir + "/" + save_file_name + ".blep", File.WRITE)
+		save_project.open(working_dir + "/" + save_file_name + ".tlp", File.WRITE)
 #
-#		var data_project : Dictionary = dictionary_project_data
-#		var data_trench : Dictionary = dictionary_trench_data
+		var data_project : Dictionary = dictionary_project_data
+		var data_trench : Dictionary = dictionary_trench_data
 #
-#		save_project.store_line(to_json(data_project))
-#		save_project.store_line(to_json(data_trench))
+		save_project.store_line(to_json(data_project))
+		save_project.store_line(to_json(data_trench))
 		save_project.close()
 	else: #throw error - call popup
 		get_tree().get_root().get_node("main/PanelContainer/gui/set_working_dir_warning").popup_centered()
+	return
+	
+
+func load_data(data_path):
+	# create a file object
+	var load_data = File.new()
+	
+	# see if the file actually exists before opening it
+	if !load_data.file_exists(data_path):
+		print ("File not found! Aborting...")
+		return
+	
+	# use an empty dictionary to assign temporary data to
+	var current_line = {}
+
+	# read the data in
+	load_data.open(data_path, File.READ)
+	
+	var i : int = 0 #line counter
+	#there should only ever be two variables
+	while(!load_data.eof_reached()):
+		
+		# use currentLine to parse through the file
+		current_line = parse_json(load_data.get_line())
+
+		# assign the data to the variables
+		if i == 0:
+			dictionary_project_data.clear()
+			dictionary_project_data = current_line
+		elif i == 1:
+			dictionary_trench_data = current_line
+			pass
+		
+		i += 1
+#		proje  =  current_line["unlocked_items"]
+#		global.arrHighScore = current_line["high_score"]
+#		global.total_coins = current_line["total_coins"]
+	
+	load_data.close()
+	
+	emit_signal("load_project")
 	return
 

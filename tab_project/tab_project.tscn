@@ -23,11 +23,11 @@ margin_bottom = 213.0
 
 [node name="mc" parent="tab_master/vbox" index="0"]
 margin_right = 974.0
-margin_bottom = 184.0
+margin_bottom = 208.0
 
 [node name="vbox" type="VBoxContainer" parent="tab_master/vbox/mc" index="0"]
 margin_right = 974.0
-margin_bottom = 184.0
+margin_bottom = 208.0
 rect_min_size = Vector2( 974, 0 )
 
 [node name="input_proj_number" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
@@ -108,7 +108,6 @@ editable = false
 visible = false
 
 [node name="button_working_dir" type="Button" parent="tab_master/vbox/mc/vbox"]
-editor/display_folded = true
 margin_top = 116.0
 margin_right = 974.0
 margin_bottom = 136.0
@@ -137,13 +136,38 @@ margin_right = 974.0
 margin_bottom = 160.0
 text = "Save Project"
 
-[node name="button_add_trench" type="Button" parent="tab_master/vbox/mc/vbox"]
+[node name="button_load_data" type="Button" parent="tab_master/vbox/mc/vbox"]
 margin_top = 164.0
 margin_right = 974.0
 margin_bottom = 184.0
+text = "Load Project"
+
+[node name="file_search" type="FileDialog" parent="tab_master/vbox/mc/vbox/button_load_data"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 150.511
+margin_top = -1.08121
+margin_right = 481.511
+margin_bottom = 273.919
+rect_min_size = Vector2( 275, 275 )
+window_title = "Open a File"
+resizable = true
+mode = 0
+access = 2
+show_hidden_files = true
+current_dir = "C:/Users/kelby/dev/software/tools/trench_logger_plus"
+current_path = "C:/Users/kelby/dev/software/tools/trench_logger_plus/"
+
+[node name="button_add_trench" type="Button" parent="tab_master/vbox/mc/vbox"]
+margin_top = 188.0
+margin_right = 974.0
+margin_bottom = 208.0
 text = "Add Trench"
 
 [node name="new_trench_pop" type="ConfirmationDialog" parent="tab_master/vbox/mc/vbox/button_add_trench"]
+editor/display_folded = true
 margin_right = 250.0
 margin_bottom = 86.0
 
