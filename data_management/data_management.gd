@@ -84,7 +84,7 @@ func load_data(data_path):
 		elif i == 1:
 			dictionary_trench_data = current_line
 			pass
-		
+
 		i += 1
 #		proje  =  current_line["unlocked_items"]
 #		global.arrHighScore = current_line["high_score"]

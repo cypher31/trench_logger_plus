@@ -2,6 +2,18 @@ extends Control
 
 var trench_parent : String
 
+var trench_date_node : Node
+var trench_number_node : Node
+var trench_location_node : Node
+var trench_logged_by_node : Node
+var trench_equipment_node : Node
+var trench_total_depth_node : Node
+var trench_elevation_node : Node
+var trench_groundwater_node : Node
+var trench_scale_node : Node
+var trench_slope_node : Node
+var trench_trend_node : Node
+
 var trench_date : String
 var trench_number : String
 var trench_location : String
@@ -13,6 +25,7 @@ var trench_groundwater : String
 var trench_scale : String
 var trench_slope : String
 var trench_trend : String
+
 var trench_row_data : Dictionary
 
 var trench_project_dict : Dictionary = {}
@@ -26,6 +39,19 @@ func _ready():
 	$tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_number/user_input.set_text(get_name())
 	
 	data_management.connect("save_project", self, "update_trench_dict")
+	data_management.connect("load_project", self, "load_trench_data")
+	
+	trench_date_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_date/user_input
+	trench_number_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_number/user_input
+	trench_location_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_location/user_input
+	trench_logged_by_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_logged_by/user_input
+	trench_equipment_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_equipment/user_input
+	trench_total_depth_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_total_depth/user_input
+	trench_elevation_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_elevation/user_input
+	trench_groundwater_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_groundwater/user_input
+	trench_scale_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_scale/user_input
+	trench_slope_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_slope/user_input
+	trench_trend_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_trend/user_input
 	pass # Replace with function body.
 
 func add_row():
@@ -86,4 +112,24 @@ func new_script():
 	var data = data_management.dictionary_trench_data[trench_name]
 	
 	generate_script.new_script(data[0], data[1])
+	pass
+	
+	
+func load_trench_data():
+	print(data_management.dictionary_trench_data[get_name()])
+	trench_date_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_date"])
+	trench_number_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_number"])
+	trench_location_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_location"])
+	trench_logged_by_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_logged_by"])
+	trench_equipment_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_equipment"])
+	trench_total_depth_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_total_depth"])
+	trench_elevation_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_elevation"])
+	trench_groundwater_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_groundwater"])
+	trench_scale_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_scale"])
+	trench_slope_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_slope"])
+	trench_trend_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_trend"])
+	
+	for i in range(0, data_management.dictionary_trench_data[get_name()][1].size()):
+		$tab_master/vbox/mc/vbox/ScrollContainer/trench_data/trench_input_row_0.get_node("trench_depth").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(i)]["trench_depth"])
+		pass
 	pass
