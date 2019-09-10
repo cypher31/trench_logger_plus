@@ -293,8 +293,9 @@ func create_new_tab(tab_type, tab_name):
 	pass
 
 
-func add_data_row(row_scene, row_container):
+func add_data_row(row_scene, row_container, current_row_count):
 	var new_row_instance = object_scene_dict[row_scene].instance()
 	
 	row_container.add_child(new_row_instance)
+	new_row_instance.set_name("trench_input_row_" + str(current_row_count))
 	pass

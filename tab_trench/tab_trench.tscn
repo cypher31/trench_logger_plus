@@ -31,6 +31,7 @@ margin_right = 964.0
 margin_bottom = 455.0
 
 [node name="trench_descriptions" type="HBoxContainer" parent="tab_master/vbox/mc/vbox"]
+editor/display_folded = true
 margin_right = 964.0
 margin_bottom = 170.0
 

@@ -55,7 +55,8 @@ func _ready():
 	pass # Replace with function body.
 
 func add_row():
-	utility.add_data_row("user_input_trench_entry", $tab_master/vbox/mc/vbox/ScrollContainer/trench_data)
+	var current_row_count = $tab_master/vbox/mc/vbox/ScrollContainer/trench_data.get_child_count()
+	utility.add_data_row("user_input_trench_entry", $tab_master/vbox/mc/vbox/ScrollContainer/trench_data, current_row_count)
 	pass
 	
 
@@ -116,7 +117,6 @@ func new_script():
 	
 	
 func load_trench_data():
-	print(data_management.dictionary_trench_data[get_name()])
 	trench_date_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_date"])
 	trench_number_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_number"])
 	trench_location_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_location"])
@@ -129,7 +129,27 @@ func load_trench_data():
 	trench_slope_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_slope"])
 	trench_trend_node.set_text(data_management.dictionary_trench_data[get_name()][0]["trench_trend"])
 	
-	for i in range(0, data_management.dictionary_trench_data[get_name()][1].size()):
-		$tab_master/vbox/mc/vbox/ScrollContainer/trench_data/trench_input_row_0.get_node("trench_depth").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(i)]["trench_depth"])
+	#check how many rows there are. If more than 1 row generate number of rows needed
+	for i in range(0, data_management.dictionary_trench_data[get_name()][1].size() - 1):
+		add_row()
 		pass
+	
+	#place data
+	for j in range(0, data_management.dictionary_trench_data[get_name()][1].size()):
+		print(j)
+		var current_row = get_node("tab_master/vbox/mc/vbox/ScrollContainer/trench_data/trench_input_row_" + str(j))
+		print(current_row)
+		current_row.get_node("trench_depth").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_depth"])
+		current_row.get_node("trench_attitude").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_attitude"])
+		current_row.get_node("trench_unit").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_unit"])
+		current_row.get_node("trench_description").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_description"])
+		current_row.get_node("trench_geo_unit").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_geo_unit"])
+		current_row.get_node("trench_uscs").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_uscs"])
+		current_row.get_node("trench_sample_no").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_sample_no"])
+		current_row.get_node("trench_moisture").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_moisture"])
+		current_row.get_node("trench_density").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_density"])
+		print(current_row.get_name())
+		pass
+		
+	data_management.emit_signal("save_project")
 	pass
