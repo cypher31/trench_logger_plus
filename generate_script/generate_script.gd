@@ -85,14 +85,15 @@ func new_script(trench_specific_data, trench_row_data):
 		var y_pos : float = (last_depth + y_pos_next) / 2
 		
 		if trench_row_data["trench_row_" + str(k)]["trench_unit"] != "-":
-			script_dict[script_dict.size() + 1] = "clayer 0/r/n"
-			script_dict[script_dict.size() + 1] = "-Insert/r/n"
-			script_dict[script_dict.size() + 1] = "geoatt/r/n"
-			script_dict[script_dict.size() + 1] = "%s,%s/r/n" % [x_pos, y_pos]
-			script_dict[script_dict.size() + 1] = "1/r/n"
-			script_dict[script_dict.size() + 1] = "1/r/n"
-			script_dict[script_dict.size() + 1] = "0/r/n"
-			script_dict[script_dict.size() + 1] = (trench_row_data["trench_row_" + str(k)]["trench_unit"]) + "/r/n"
+			script_dict[script_dict.size() + 1] = "clayer 0\r\n"
+			script_dict[script_dict.size() + 1] = "-Insert\r\n"
+			script_dict[script_dict.size() + 1] = "geoatt\r\n"
+			script_dict[script_dict.size() + 1] = "%s,%s\r\n" % [x_pos, y_pos]
+			script_dict[script_dict.size() + 1] = "1\r\n"
+			script_dict[script_dict.size() + 1] = "1\r\n"
+			script_dict[script_dict.size() + 1] = "0\r\n"
+			script_dict[script_dict.size() + 1] = (trench_row_data["trench_row_" + str(k)]["trench_unit"]) + "\r\n"
+			script_dict[script_dict.size() + 1] = "pline\r\n%s,%s\r\n%s,%s\r\n\r\n" % [trench_outline_start.x, y_pos, trench_outline_end.x, y_pos]
 			
 			last_depth = last_depth - float(trench_row_data["trench_row_" + str(k)]["trench_depth"]) / 5
 		k += 1
