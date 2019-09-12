@@ -63,7 +63,7 @@ func new_script(trench_specific_data, trench_row_data):
 	#extra clear
 	script_dict[script_dict.size() + 1] = "\r\n"
 	
-	#generate geoatt within trench outline
+	#generate soil boundaries within trench outline
 	var k : int = 0
 	
 	var trench_outline_start = Vector2(trench_outline[1].strip_edges().split_floats(",")[0], trench_outline[1].strip_edges().split_floats(",")[1])
@@ -72,31 +72,36 @@ func new_script(trench_specific_data, trench_row_data):
 	var trench_centerline = (trench_outline_end + trench_outline_start) / 2
 
 	var last_depth : float = trench_centerline.y
-	
+	print(trench_outline)
 	for k in range(0, trench_row_data.size()):
-		var x_pos : float = trench_centerline.x
-		var y_pos_next : float
-
-		if (k + 1) == trench_row_data.size():
-			y_pos_next = trench_outline_start.y - float(trench_specific_data["trench_total_depth"]) / 5
+		var x_pos_att : float = trench_centerline.x
+		var y_pos_att : float
+		
+		var y_pos_pline : float
+		
+		if k == 0:
+			y_pos_att = trench_centerline.y - (float(trench_row_data["trench_row_" + str(k)]["trench_depth"]) / 5) / 2
+			y_pos_pline = trench_centerline.y - float(trench_row_data["trench_row_" + str(k)]["trench_depth"]) / 5
+			print(trench_centerline.y)
+		elif k == trench_row_data.size()-1:
+			y_pos_att = trench_centerline.y - ((float(trench_row_data["trench_row_" + str(k)]["trench_depth"]) + float(trench_specific_data["trench_total_depth"])) / 5) / 2
+			y_pos_pline = trench_centerline.y - float(trench_row_data["trench_row_" + str(k)]["trench_depth"]) / 5
 		else:
-			y_pos_next = (float(trench_row_data["trench_row_" + str(k+1)]["trench_depth"]) / 5)
-
-		var y_pos : float = (last_depth + y_pos_next) / 2
+			y_pos_att = trench_centerline.y - ((float(trench_row_data["trench_row_" + str(k)]["trench_depth"]) + float(trench_row_data["trench_row_" + str(k+1)]["trench_depth"])) / 5) / 2
+			y_pos_pline = trench_centerline.y - (float(trench_row_data["trench_row_" + str(k)]["trench_depth"]) + float(trench_row_data["trench_row_" + str(k+1)]["trench_depth"])) / 5
+			pass
 		
 		if trench_row_data["trench_row_" + str(k)]["trench_unit"] != "-":
 			script_dict[script_dict.size() + 1] = "clayer 0\r\n"
 			script_dict[script_dict.size() + 1] = "-Insert\r\n"
 			script_dict[script_dict.size() + 1] = "geoatt\r\n"
-			script_dict[script_dict.size() + 1] = "%s,%s\r\n" % [x_pos, y_pos]
+			script_dict[script_dict.size() + 1] = "%s,%s\r\n" % [x_pos_att, y_pos_att]
 			script_dict[script_dict.size() + 1] = "1\r\n"
 			script_dict[script_dict.size() + 1] = "1\r\n"
 			script_dict[script_dict.size() + 1] = "0\r\n"
 			script_dict[script_dict.size() + 1] = (trench_row_data["trench_row_" + str(k)]["trench_unit"]) + "\r\n"
-			script_dict[script_dict.size() + 1] = "pline\r\n%s,%s\r\n%s,%s\r\n\r\n" % [trench_outline_start.x, y_pos, trench_outline_end.x, y_pos]
-			
-			last_depth = last_depth - float(trench_row_data["trench_row_" + str(k)]["trench_depth"]) / 5
-		k += 1
+			script_dict[script_dict.size() + 1] = "pline\r\n%s,%s\r\n%s,%s\r\n\r\n" % [trench_outline_start.x, y_pos_pline, trench_outline_end.x, y_pos_pline]
+
 		pass
 	
 	#generate script file
