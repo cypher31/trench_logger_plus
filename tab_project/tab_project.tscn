@@ -10,6 +10,9 @@ margin_right = 974.0
 margin_bottom = -600.0
 rect_min_size = Vector2( 974, 0 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="tab_master" parent="." instance=ExtResource( 2 )]
 margin_right = 984.0
@@ -31,7 +34,6 @@ margin_bottom = 208.0
 rect_min_size = Vector2( 974, 0 )
 
 [node name="input_proj_number" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
-editor/display_folded = true
 margin_right = 974.0
 
 [node name="input_label" parent="tab_master/vbox/mc/vbox/input_proj_number" index="0"]
@@ -49,7 +51,6 @@ margin_left = 244.0
 margin_right = 244.0
 
 [node name="input_proj_name" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
-editor/display_folded = true
 margin_top = 29.0
 margin_right = 974.0
 margin_bottom = 54.0
@@ -69,7 +70,6 @@ margin_left = 230.0
 margin_right = 244.0
 
 [node name="input_user_initials" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
-editor/display_folded = true
 margin_top = 58.0
 margin_right = 974.0
 margin_bottom = 83.0
@@ -89,7 +89,6 @@ margin_left = 230.0
 margin_right = 244.0
 
 [node name="input_working_directory" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
-editor/display_folded = true
 margin_top = 87.0
 margin_right = 974.0
 margin_bottom = 112.0
@@ -127,8 +126,8 @@ window_title = "Open a Directory"
 resizable = true
 mode = 2
 access = 2
-current_dir = "C:/Users/kelby/dev/software/tools/trench_logger_plus"
-current_path = "C:/Users/kelby/dev/software/tools/trench_logger_plus/"
+current_dir = "C:/Users/kelby/dev/software/tool/trench_logger_plus"
+current_path = "C:/Users/kelby/dev/software/tool/trench_logger_plus/"
 
 [node name="button_save_data" type="Button" parent="tab_master/vbox/mc/vbox"]
 margin_top = 140.0
@@ -157,8 +156,8 @@ resizable = true
 mode = 0
 access = 2
 show_hidden_files = true
-current_dir = "C:/Users/kelby/dev/software/tools/trench_logger_plus"
-current_path = "C:/Users/kelby/dev/software/tools/trench_logger_plus/"
+current_dir = "C:/Users/kelby/dev/software/tool/trench_logger_plus"
+current_path = "C:/Users/kelby/dev/software/tool/trench_logger_plus/"
 
 [node name="button_add_trench" type="Button" parent="tab_master/vbox/mc/vbox"]
 margin_top = 188.0
@@ -167,7 +166,6 @@ margin_bottom = 208.0
 text = "Add Trench"
 
 [node name="new_trench_pop" type="ConfirmationDialog" parent="tab_master/vbox/mc/vbox/button_add_trench"]
-editor/display_folded = true
 margin_right = 250.0
 margin_bottom = 86.0
 

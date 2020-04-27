@@ -35,7 +35,8 @@ func file_dialog():
 	
 func set_working_dir(dir):
 	get_node("tab_master/vbox/mc/vbox/input_working_directory/user_input").set_text(dir)
-	data_management.working_directory = dir
+	data_management.working_dir = dir
+	print(dir)
 	pass
 
 func save_data():

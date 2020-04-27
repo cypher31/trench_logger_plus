@@ -15,6 +15,9 @@ margin_left = -519.0
 margin_top = -307.0
 margin_right = 519.0
 margin_bottom = 307.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="gui" parent="PanelContainer" instance=ExtResource( 1 )]
 anchor_right = 0.0
