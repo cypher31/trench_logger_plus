@@ -131,21 +131,21 @@ func row_data(data):
 	var i_y : int = 0
 	
 	for row in data:
-		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10 j tc w 0.3 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_attitude"]]
+		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10\r\n j tc w 0.3 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_attitude"]]
 		i_x += 1
-		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10 j tc w 0.3 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_unit"]]
+		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10\r\n j tc w 0.3 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_unit"]]
 		i_x += 1
-		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10 j tl w 4.95 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_description"]]
+		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10\r\n j tl w 4.95 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_description"]]
 		i_x += 1
-		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10 j tc w 0.7 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_geo_unit"]]
+		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10\r\n j tc w 0.7 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_geo_unit"]]
 		i_x += 1
-		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10 j tc w 0.7 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_uscs"]]
+		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10\r\n j tc w 0.7 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_uscs"]]
 		i_x += 1
-		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10 j tc w 0.7 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_sample_no"]]
+		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10\r\n j tc w 0.7 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_sample_no"]]
 		i_x += 1
-		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10 j tc w 0.7 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_moisture"]]
+		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10\r\n j tc w 0.7 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_moisture"]]
 		i_x += 1
-		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10 j tc w 0.7 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_density"]]
+		data_fixed[data_fixed.size() + 1] = "-mtext %s,%s s AB10\r\n j tc w 0.7 %s\r\n\r\n" % [all_x_pos[i_x], all_y_pos[i_y], data[row]["trench_density"]]
 		
 		i_x = 0
 		i_y += 1
