@@ -36,7 +36,7 @@ func save_data():
 	var save_hour = save_time["hour"]
 	var save_min = save_time["minute"]
 	
-	var save_file_name = str(save_year) +"_"+ str(save_month) +"_"+ str(save_day) +"_"+ str(save_hour) +"_"+ str(save_min) +"_"+ str(project_number)
+	var save_file_name = str(save_year) +"_"+ str(save_month) + str(project_number)
 	
 	#create save file
 	#check if working directory has been selected...
@@ -50,6 +50,18 @@ func save_data():
 		save_project.store_line(to_json(data_project))
 		save_project.store_line(to_json(data_trench))
 		save_project.close()
+		
+		var output_console : TextEdit = utility.output_node
+		var output_text : String = output_console.get_text()
+		var text_standard : String = "Project saved successfully. File name:"
+		var date_time : Dictionary = OS.get_datetime() #year, month, day, weekday, dst (Daylight Savings Time), hour, minute, second.
+		var day = date_time["day"]
+		var month = date_time["month"]
+		var hour = date_time["hour"]
+		var minute = date_time["minute"]
+		var text : String = output_text + "\r\n" + text_standard + " " + save_file_name + " Completed at %s:%s on %s/%s" % [hour, minute, month, day]
+		
+		utility.output_node.set_text(text)
 	else: #throw error - call popup
 		get_tree().get_root().get_node("main/PanelContainer/gui/set_working_dir_warning").popup_centered()
 	return

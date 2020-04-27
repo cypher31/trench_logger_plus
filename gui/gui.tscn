@@ -118,6 +118,7 @@ margin_bottom = -31.8362
 rect_min_size = Vector2( 300, 50 )
 readonly = true
 show_line_numbers = true
+wrap_enabled = true
 
 [editable path="mc/hbox/vbox/tab_cont/Project"]
 
