@@ -52,6 +52,11 @@ func _ready():
 	trench_scale_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_scale/user_input
 	trench_slope_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_slope/user_input
 	trench_trend_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_trend/user_input
+	
+	#tab name managmenet
+	var trench_name_box : LineEdit = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_number/user_input
+	trench_name_box.connect("text_changed", self, "_update_tab_name")
+	##
 	pass # Replace with function body.
 
 func add_row():
@@ -153,3 +158,7 @@ func load_trench_data():
 		
 	data_management.emit_signal("save_project")
 	pass
+	
+func _update_tab_name(new_text : String):
+	self.set_name(new_text)
+	return
