@@ -14,6 +14,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="mc" type="MarginContainer" parent="."]
 anchor_bottom = 1.0
@@ -42,7 +45,6 @@ custom_styles/panel = SubResource( 2 )
 tab_align = 0
 
 [node name="Project" parent="mc/hbox/vbox/tab_cont" instance=ExtResource( 2 )]
-editor/display_folded = true
 anchor_right = 1.0
 margin_top = 24.0
 margin_right = 0.0
@@ -54,7 +56,6 @@ margin_right = 0.0
 rect_min_size = Vector2( 0, 0 )
 
 [node name="vbox" parent="mc/hbox/vbox/tab_cont/Project/tab_master" index="0"]
-editor/display_folded = true
 margin_left = 0.0
 margin_right = 952.0
 margin_bottom = 223.0
@@ -67,7 +68,6 @@ margin_right = 952.0
 rect_min_size = Vector2( 0, 0 )
 
 [node name="input_proj_number" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="0"]
-editor/display_folded = false
 margin_right = 952.0
 
 [node name="input_label" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox/input_proj_number" index="0"]
@@ -99,7 +99,6 @@ margin_right = 952.0
 margin_right = 952.0
 
 [node name="TP-1" parent="mc/hbox/vbox/tab_cont" instance=ExtResource( 3 )]
-editor/display_folded = true
 visible = false
 margin_top = 24.0
 margin_right = 0.0
