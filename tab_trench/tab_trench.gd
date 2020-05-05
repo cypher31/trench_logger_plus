@@ -33,8 +33,14 @@ var trench_dict : Dictionary = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	var pop_up_delete = $delete_popup
+	
+	pop_up_delete.connect("confirmed", self, "_delete_popup")
+	
 	$tab_master/vbox/mc/vbox/button_add_row.connect("button_up", self, "add_row")
 	$tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/button_script.connect("button_up", self, "new_script")
+	
+	$tab_master/vbox/mc/vbox/mc/button_delete_trench.connect("button_up", self, "_show_delete_popup")
 	
 	$tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_number/user_input.set_text(get_name())
 	
@@ -52,6 +58,7 @@ func _ready():
 	trench_scale_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_scale/user_input
 	trench_slope_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_slope/user_input
 	trench_trend_node = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_trend/user_input
+
 	
 	#tab name managmenet
 	var trench_name_box : LineEdit = $tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_number/user_input
@@ -159,4 +166,22 @@ func load_trench_data():
 	
 func _update_tab_name(new_text : String):
 	self.set_name(new_text)
+	return
+	
+	
+func _show_delete_popup():
+	var pop_up = $delete_popup
+	pop_up.popup_centered()
+	return
+	
+func _delete_popup():
+	var pop_up = $delete_popup
+	var pop_up_input = pop_up.get_node("vbox/LineEdit").get_text()
+	
+	if pop_up_input.length() > 0:
+		if pop_up_input == self.get_name():
+			utility.delete_trench(self)
+	else:
+#		utility.output_node.set_text("Please Enter a Valid Name")
+		pop_up.show()
 	return

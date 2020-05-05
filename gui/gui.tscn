@@ -102,7 +102,7 @@ rect_min_size = Vector2( 750, 275 )
 [node name="button_add_trench" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="7"]
 margin_right = 952.0
 
-[node name="TextEdit" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="8"]
+[node name="user_messages" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="8"]
 margin_right = 952.0
 
 [node name="TP-1" parent="mc/hbox/vbox/tab_cont" instance=ExtResource( 3 )]

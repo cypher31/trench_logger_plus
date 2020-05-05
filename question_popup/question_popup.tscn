@@ -1,0 +1,25 @@
+[gd_scene format=2]
+
+[node name="new_trench_pop" type="ConfirmationDialog"]
+margin_right = 250.0
+margin_bottom = 86.0
+
+[node name="vbox" type="VBoxContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 242.0
+margin_bottom = 50.0
+
+[node name="Label" type="Label" parent="vbox"]
+margin_right = 234.0
+margin_bottom = 14.0
+text = "Add new Trench Exploration"
+align = 1
+
+[node name="LineEdit" type="LineEdit" parent="vbox"]
+margin_top = 18.0
+margin_right = 234.0
+margin_bottom = 42.0
+align = 1
+clear_button_enabled = true
+placeholder_text = "Enter Trench Label (Ex. TP-1)"
