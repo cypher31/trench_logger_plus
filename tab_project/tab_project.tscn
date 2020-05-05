@@ -26,11 +26,11 @@ margin_bottom = 213.0
 
 [node name="mc" parent="tab_master/vbox" index="0"]
 margin_right = 974.0
-margin_bottom = 208.0
+margin_bottom = 436.0
 
 [node name="vbox" type="VBoxContainer" parent="tab_master/vbox/mc" index="0"]
 margin_right = 974.0
-margin_bottom = 208.0
+margin_bottom = 436.0
 rect_min_size = Vector2( 974, 0 )
 
 [node name="input_proj_number" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
@@ -96,7 +96,7 @@ margin_bottom = 112.0
 [node name="input_label" parent="tab_master/vbox/mc/vbox/input_working_directory" index="0"]
 margin_right = 485.0
 size_flags_horizontal = 3
-text = "Working Dir."
+text = "Working Directory"
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/input_working_directory" index="1"]
 margin_left = 489.0
@@ -188,6 +188,55 @@ margin_bottom = 42.0
 align = 1
 clear_button_enabled = true
 placeholder_text = "Enter Trench Label (Ex. TP-1)"
+
+[node name="user_messages" type="TextEdit" parent="tab_master/vbox/mc/vbox"]
+margin_top = 212.0
+margin_right = 974.0
+margin_bottom = 412.0
+rect_min_size = Vector2( 0, 200 )
+text = "
+1. If there is no system path in the 'Working Directory' then click on 'Change Working Directory' to set where your project and scripts will be saved
+2. Enter the relevant project info and your initials
+3. The project save file is named by  TODAYS date and the project # you input. If you work on the same project file over multiple days it will save as a new file each day, remember to choose the latest date when loading files. 
+4. Projects always start with 1 trench. If you want to add more click on 'Add Trench'
+5. The project saves automatically when certain functions are used. Check the messages below to see the last time the file was saved, if in doubt just click the save button above to save the project."
+readonly = true
+wrap_enabled = true
+
+[node name="button_about" type="Button" parent="tab_master/vbox/mc/vbox"]
+margin_top = 416.0
+margin_right = 107.0
+margin_bottom = 436.0
+size_flags_horizontal = 0
+text = "About Program"
+
+[node name="about_pop" type="WindowDialog" parent="tab_master/vbox/mc/vbox/button_about"]
+margin_right = 48.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 750, 275 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="about_text" type="TextEdit" parent="tab_master/vbox/mc/vbox/button_about/about_pop"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 745.0
+margin_bottom = 270.0
+text = "Program Version: 0.7.5
+Program written by: Kelby Styler 
+Contact Info: kelbystyler@gmail.com, 949.375.4300
+
+Program written in 2019/2020 to replace trench logger excel program. Program written using Godot Engine version 3.2.1.stable.official
+
+Source code for this program is saved in the Z drive. Last known file path below:
+
+Z://a;lskdjfa;lsdkjf;alksdjf;alskdjf;alsdkjfg;alsdkgja;sldkjgfa;sldkfj;asldkfj;lksdjf;"
+readonly = true
+wrap_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [editable path="tab_master"]
 

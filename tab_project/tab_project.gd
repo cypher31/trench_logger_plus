@@ -14,6 +14,9 @@ func _ready():
 	var button_new_trench = $tab_master/vbox/mc/vbox/button_add_trench
 	var pop_up_new_trench = $tab_master/vbox/mc/vbox/button_add_trench/new_trench_pop
 	
+	var button_about = $tab_master/vbox/mc/vbox/button_about
+	var pop_up_about = $tab_master/vbox/mc/vbox/button_about/about_pop
+	
 	file_dialog_button.connect("button_up", self, "file_dialog")
 	file_dialog_popup.connect("dir_selected", self, "set_working_dir")
 	
@@ -25,11 +28,24 @@ func _ready():
 	button_new_trench.connect("button_up", self, "new_trench")
 	pop_up_new_trench.connect("confirmed", self, "new_trench_pop_up")
 	
+	button_about.connect("button_up", self, "_about_popup")
 	pass # Replace with function body.
 
 func file_dialog():
-	var popup = $tab_master/vbox/mc/vbox/button_working_dir/FileDialog
+	var popup : FileDialog = $tab_master/vbox/mc/vbox/button_working_dir/FileDialog
 	
+	popup._set_size(Vector2(750, 250))
+	popup.set_current_dir("C:/Users/")
+	popup.set_current_dir("C:/Users/kelby/dev/software/prototype/trench_logger_plus")
+	popup.popup_centered()
+	return
+	
+	
+func _about_popup():
+	var popup : WindowDialog = $tab_master/vbox/mc/vbox/button_about/about_pop
+	
+	popup._set_size(Vector2(750, 250))
+
 	popup.popup_centered()
 	return
 	
@@ -46,6 +62,9 @@ func save_data():
 func load_data():
 	var popup = $tab_master/vbox/mc/vbox/button_load_data/file_search
 	
+	popup._set_size(Vector2(750, 250))
+	popup.set_current_dir("C:/Users/")
+	popup.set_current_dir("C:/Users/kelby/dev/software/prototype/trench_logger_plus")
 	popup.popup_centered()
 	pass
 

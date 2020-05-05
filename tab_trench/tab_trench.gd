@@ -99,7 +99,7 @@ func update_trench_dict():
 			if data_item.get_text() != "":
 				trench_row_data[data_item.get_name()] = data_item.get_text()
 			else:
-				trench_row_data[data_item.get_name()] = "-"
+				trench_row_data[data_item.get_name()] = ""
 			pass
 		trench_dict["trench_row_" + str(trench_row.get_index())] = trench_row_data.duplicate()
 		
@@ -141,9 +141,8 @@ func load_trench_data():
 	
 	#place data
 	for j in range(0, data_management.dictionary_trench_data[get_name()][1].size()):
-		print(j)
 		var current_row = get_node("tab_master/vbox/mc/vbox/ScrollContainer/trench_data/trench_input_row_" + str(j))
-		print(current_row)
+
 		current_row.get_node("trench_depth").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_depth"])
 		current_row.get_node("trench_attitude").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_attitude"])
 		current_row.get_node("trench_unit").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_unit"])
@@ -153,10 +152,9 @@ func load_trench_data():
 		current_row.get_node("trench_sample_no").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_sample_no"])
 		current_row.get_node("trench_moisture").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_moisture"])
 		current_row.get_node("trench_density").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_density"])
-		print(current_row.get_name())
 		pass
 		
-	data_management.emit_signal("save_project")
+#	data_management.emit_signal("save_project")
 	pass
 	
 func _update_tab_name(new_text : String):

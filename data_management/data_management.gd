@@ -36,7 +36,7 @@ func save_data():
 	var save_hour = save_time["hour"]
 	var save_min = save_time["minute"]
 	
-	var save_file_name = str(save_year) +"_"+ str(save_month) + str(project_number)
+	var save_file_name = str(save_year) +"_"+ str(save_month) + "_" + str(project_number)
 	
 	#create save file
 	#check if working directory has been selected...
@@ -103,6 +103,10 @@ func load_data(data_path):
 #		global.total_coins = current_line["total_coins"]
 	
 	load_data.close()
+	
+	for trench in dictionary_trench_data:
+		if trench != "TP-1":
+			utility.create_new_tab("tab_trench", trench)
 	
 	emit_signal("load_project")
 	return
