@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://tab_project/tab_project.gd" type="Script" id=1]
 [ext_resource path="res://tab_master/tab_master.tscn" type="PackedScene" id=2]
 [ext_resource path="res://user_input_entry/user_input_entry.tscn" type="PackedScene" id=3]
+[ext_resource path="res://question_popup/question_popup.tscn" type="PackedScene" id=4]
 
 [node name="tab_project" type="Control"]
 anchor_bottom = 1.0
@@ -165,29 +166,7 @@ margin_right = 974.0
 margin_bottom = 208.0
 text = "Add Trench"
 
-[node name="new_trench_pop" type="ConfirmationDialog" parent="tab_master/vbox/mc/vbox/button_add_trench"]
-margin_right = 250.0
-margin_bottom = 86.0
-
-[node name="vbox" type="VBoxContainer" parent="tab_master/vbox/mc/vbox/button_add_trench/new_trench_pop"]
-margin_left = 8.0
-margin_top = 8.0
-margin_right = 242.0
-margin_bottom = 50.0
-
-[node name="Label" type="Label" parent="tab_master/vbox/mc/vbox/button_add_trench/new_trench_pop/vbox"]
-margin_right = 234.0
-margin_bottom = 14.0
-text = "Add new Trench Exploration"
-align = 1
-
-[node name="LineEdit" type="LineEdit" parent="tab_master/vbox/mc/vbox/button_add_trench/new_trench_pop/vbox"]
-margin_top = 18.0
-margin_right = 234.0
-margin_bottom = 42.0
-align = 1
-clear_button_enabled = true
-placeholder_text = "Enter Trench Label (Ex. TP-1)"
+[node name="new_trench_pop" parent="tab_master/vbox/mc/vbox/button_add_trench" instance=ExtResource( 4 )]
 
 [node name="user_messages" type="TextEdit" parent="tab_master/vbox/mc/vbox"]
 margin_top = 212.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://tab_trench/tab_trench.gd" type="Script" id=1]
 [ext_resource path="res://tab_master/tab_master.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://user_input_trench_title/user_input_trench_title.tscn" type="PackedScene" id=4]
 [ext_resource path="res://user_input_trench_entry/user_input_trench_entry.tscn" type="PackedScene" id=5]
 [ext_resource path="res://icon.png" type="Texture" id=6]
+[ext_resource path="res://question_popup/question_popup.tscn" type="PackedScene" id=7]
 
 [node name="tab_trench" type="Control"]
 anchor_right = 1.0
@@ -27,11 +28,11 @@ margin_bottom = 259.0
 
 [node name="mc" parent="tab_master/vbox" index="0"]
 margin_right = 952.0
-margin_bottom = 455.0
+margin_bottom = 459.0
 
 [node name="vbox" type="VBoxContainer" parent="tab_master/vbox/mc" index="0"]
 margin_right = 952.0
-margin_bottom = 455.0
+margin_bottom = 459.0
 
 [node name="trench_descriptions" type="HBoxContainer" parent="tab_master/vbox/mc/vbox"]
 margin_right = 952.0
@@ -265,8 +266,8 @@ margin_bottom = 48.0
 [node name="ScrollContainer" type="ScrollContainer" parent="tab_master/vbox/mc/vbox"]
 margin_top = 226.0
 margin_right = 952.0
-margin_bottom = 426.0
-rect_min_size = Vector2( 0, 200 )
+margin_bottom = 376.0
+rect_min_size = Vector2( 0, 150 )
 scroll_horizontal_enabled = false
 
 [node name="trench_data" type="VBoxContainer" parent="tab_master/vbox/mc/vbox/ScrollContainer"]
@@ -277,14 +278,39 @@ rect_min_size = Vector2( 952, 0 )
 [node name="trench_input_row_0" parent="tab_master/vbox/mc/vbox/ScrollContainer/trench_data" instance=ExtResource( 5 )]
 
 [node name="button_add_row" type="TextureButton" parent="tab_master/vbox/mc/vbox"]
-margin_top = 430.0
+margin_top = 380.0
 margin_right = 952.0
-margin_bottom = 455.0
+margin_bottom = 405.0
 rect_min_size = Vector2( 952, 25 )
 size_flags_horizontal = 0
 texture_normal = ExtResource( 6 )
 expand = true
 stretch_mode = 1
+
+[node name="mc" type="MarginContainer" parent="tab_master/vbox/mc/vbox"]
+margin_top = 409.0
+margin_right = 952.0
+margin_bottom = 459.0
+custom_constants/margin_top = 25
+
+[node name="button_delete_trench" type="TextureButton" parent="tab_master/vbox/mc/vbox/mc"]
+margin_top = 25.0
+margin_right = 952.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 952, 25 )
+size_flags_horizontal = 0
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 1
+
+[node name="delete_popup" parent="." instance=ExtResource( 7 )]
+visible = true
+
+[node name="Label" parent="delete_popup/vbox" index="0"]
+text = "Confirm Trench to be Deleted"
+
+[node name="LineEdit" parent="delete_popup/vbox" index="1"]
+placeholder_text = "Enter Trench Name to Delete"
 
 [editable path="tab_master"]
 
@@ -311,3 +337,5 @@ stretch_mode = 1
 [editable path="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_trend"]
 
 [editable path="tab_master/vbox/mc/vbox/trench_input_row"]
+
+[editable path="delete_popup"]
