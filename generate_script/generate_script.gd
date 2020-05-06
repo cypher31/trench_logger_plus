@@ -104,7 +104,7 @@ func row_data(data):
 	var data_fixed : Dictionary = {}
 	var x_pos_start : float = 0.5221 #0' depth position ; cylces through set values
 	var y_pos_start : float = 6.15 #0' depth position ; cycles through set values based on # of rows
-	var y_delta : float = 0.5 #vertical seperation between each trench data row 
+	var y_delta : float = 0.25 #vertical seperation between each trench data row 
 
 
 	var all_x_pos : Array = [x_pos_start, 1.0647, 1.3, 6.7857, 7.4956, 8.2075, 8.9276, 9.6428]
@@ -272,6 +272,8 @@ func get_unit_positions(unit_data : Dictionary, trench_centerline, trench_total_
 	var total_depth : float = float(trench_total_depth)
 	var center_line : Vector2 = trench_centerline
 	
+	unit_positions[unit_positions.size() + 1] = "clayer 0\r\n"
+	
 	for i in range(0, data_size):
 		var unit_x_pos : float = trench_centerline.x
 		var unit_y_pos : float
@@ -280,6 +282,7 @@ func get_unit_positions(unit_data : Dictionary, trench_centerline, trench_total_
 		var contact_start : float
 		var contact_end : float
 		
+		#Will need a check here for sloped or not sloped condition. Equations will need modification
 		if i + 1 == data_size:
 			contact_start = float(unit_data[i + 1]["trench_depth"]) / 5 #this needs to be changed to the scale eventually
 			contact_end = trench_centerline.y - total_depth / 5 #will need to be given scale eventually
@@ -293,14 +296,14 @@ func get_unit_positions(unit_data : Dictionary, trench_centerline, trench_total_
 		
 		unit_position = Vector2(unit_x_pos, unit_y_pos)
 		
-		unit_positions[unit_positions.size() + 1] = "clayer 0\r\n"
+		
 		unit_positions[unit_positions.size() + 1] = "-Insert\r\n"
 		unit_positions[unit_positions.size() + 1] = "geoatt\r\n"
 		unit_positions[unit_positions.size() + 1] = "%s,%s\r\n" % [unit_position.x, unit_position.y]
 		unit_positions[unit_positions.size() + 1] = "1\r\n"
 		unit_positions[unit_positions.size() + 1] = "1\r\n"
 		unit_positions[unit_positions.size() + 1] = "0\r\n"
-		unit_positions[unit_positions.size() + 1] = "%s\r\n\r\n" % unit
+		unit_positions[unit_positions.size() + 1] = "%s\r\n" % unit
 	return unit_positions
 
 
