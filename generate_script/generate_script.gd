@@ -75,11 +75,14 @@ func new_script(trench_specific_data, trench_row_data):
 	
 	var data_size = trench_row_data.size()
 	
-	var attitude_positions = attitude_data(last_depth, trench_centerline, data_size, trench_row_data, trench_outline_start, trench_specific_data)
+	var unit_data = get_unit_data(trench_row_data)
 	
-	for data in attitude_positions:
-		script_dict[script_dict.size() + 1] = attitude_positions[data]
-		print(attitude_positions[data])
+	var trench_total_depth = trench_specific_data["trench_total_depth"]
+	
+	var unit_positions = get_unit_positions(unit_data, trench_centerline, trench_total_depth)
+	
+	for data in unit_positions:
+		script_dict[script_dict.size() + 1] = unit_positions[data]
 		pass
 	
 	#generate script file
@@ -253,30 +256,51 @@ func new_trench_outline(td): #td = total depth of trench
 	
 	
 	
-func attitude_data(last_depth, trench_centerline, data_size, trench_row_data, trench_outline_start, trench_specific_data):
-	var data_fixed : Dictionary = {}
+func get_unit_data(trench_row_data : Dictionary):
+	var unit_data : Dictionary = {}
+	
+	for row in trench_row_data:
+		if trench_row_data[row]["trench_unit"] != "":
+			unit_data[unit_data.size() + 1] = trench_row_data[row]
+#	print(unit_data)
+	return unit_data
+	
+	
+func get_unit_positions(unit_data : Dictionary, trench_centerline, trench_total_depth):
+	var data_size : int = unit_data.size()
+	var unit_positions : Dictionary = {}
+	var total_depth : float = float(trench_total_depth)
+	var center_line : Vector2 = trench_centerline
+	
 	for i in range(0, data_size):
-		var x_pos : float = trench_centerline.x
-		var y_pos_next : float
-
-		if (i + 1) == data_size:
-			y_pos_next = trench_outline_start.y - float(trench_specific_data["trench_total_depth"]) / 5
-		else:
-			y_pos_next = (float(trench_row_data["trench_row_" + str(i+1)]["trench_depth"]) / 5)
-
-		var y_pos : float = (last_depth + y_pos_next) / 2
+		var unit_x_pos : float = trench_centerline.x
+		var unit_y_pos : float
+		var unit : String = unit_data[i + 1]["trench_unit"]
 		
-		if trench_row_data["trench_row_" + str(i)]["trench_unit"] != "":
-			data_fixed[data_fixed.size() + 1] = "clayer 0\r\n"
-			data_fixed[data_fixed.size() + 1] = "-Insert\r\n"
-			data_fixed[data_fixed.size() + 1] = "geoatt\r\n"
-			data_fixed[data_fixed.size() + 1] = "%s,%s\r\n" % [x_pos, y_pos]
-			data_fixed[data_fixed.size() + 1] = "1\r\n"
-			data_fixed[data_fixed.size() + 1] = "1\r\n"
-			data_fixed[data_fixed.size() + 1] = "0\r\n"
-			data_fixed[data_fixed.size() + 1] = (trench_row_data["trench_row_" + str(i)]["trench_unit"]) + "\r\n"
-			
-			last_depth = last_depth - float(trench_row_data["trench_row_" + str(i)]["trench_depth"]) / 5
-#		k += 1
-		pass
-	return data_fixed
+		var contact_start : float
+		var contact_end : float
+		
+		if i + 1 == data_size:
+			contact_start = float(unit_data[i + 1]["trench_depth"]) / 5 #this needs to be changed to the scale eventually
+			contact_end = trench_centerline.y - total_depth / 5 #will need to be given scale eventually
+			unit_y_pos = contact_end + (total_depth / 5 - contact_start) / 2
+		else:
+			contact_start = float(unit_data[i + 1]["trench_depth"]) / 5 #this needs to be changed to the scale eventually
+			contact_end = float(unit_data[i + 2]["trench_depth"]) / 5 #will need to be given scale eventually
+			unit_y_pos = trench_centerline.y - (contact_start + contact_end) / 2
+		
+		var unit_position : Vector2
+		
+		unit_position = Vector2(unit_x_pos, unit_y_pos)
+		
+		unit_positions[unit_positions.size() + 1] = "clayer 0\r\n"
+		unit_positions[unit_positions.size() + 1] = "-Insert\r\n"
+		unit_positions[unit_positions.size() + 1] = "geoatt\r\n"
+		unit_positions[unit_positions.size() + 1] = "%s,%s\r\n" % [unit_position.x, unit_position.y]
+		unit_positions[unit_positions.size() + 1] = "1\r\n"
+		unit_positions[unit_positions.size() + 1] = "1\r\n"
+		unit_positions[unit_positions.size() + 1] = "0\r\n"
+		unit_positions[unit_positions.size() + 1] = "%s\r\n\r\n" % unit
+	return unit_positions
+
+
