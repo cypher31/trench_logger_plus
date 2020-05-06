@@ -49,7 +49,7 @@ func new_script(trench_specific_data, trench_row_data):
 		script_dict[script_dict.size() + 1] = row_data_fixed[data]
 		pass
 	
-	script_dict[script_dict.size() + 1] = "-mtext 8.1,.9 s AR10 j tl w 1.9 Total Depth: %s\r\n Groundwater: %s\r\n Backfilled: %s" % [trench_specific_data["trench_total_depth"], trench_specific_data["trench_groundwater"], "Enter Date\r\n\r\n"]
+	script_dict[script_dict.size() + 1] = "-mtext 8.1,.9 s AR10\r\n j tl w 1.9 Total Depth: %s\r\n Groundwater: %s\r\n Backfilled: %s" % [trench_specific_data["trench_total_depth"], trench_specific_data["trench_groundwater"], "Enter Date\r\n\r\n"]
 
 	#generate trench outline
 	var trench_outline : Dictionary = new_trench_outline(trench_specific_data["trench_total_depth"])
@@ -73,29 +73,13 @@ func new_script(trench_specific_data, trench_row_data):
 
 	var last_depth : float = trench_centerline.y
 	
-	for k in range(0, trench_row_data.size()):
-		var x_pos : float = trench_centerline.x
-		var y_pos_next : float
-
-		if (k + 1) == trench_row_data.size():
-			y_pos_next = trench_outline_start.y - float(trench_specific_data["trench_total_depth"]) / 5
-		else:
-			y_pos_next = (float(trench_row_data["trench_row_" + str(k+1)]["trench_depth"]) / 5)
-
-		var y_pos : float = (last_depth + y_pos_next) / 2
-		
-		if trench_row_data["trench_row_" + str(k)]["trench_unit"] != "-":
-			script_dict[script_dict.size() + 1] = "clayer 0/r/n"
-			script_dict[script_dict.size() + 1] = "-Insert/r/n"
-			script_dict[script_dict.size() + 1] = "geoatt/r/n"
-			script_dict[script_dict.size() + 1] = "%s,%s/r/n" % [x_pos, y_pos]
-			script_dict[script_dict.size() + 1] = "1/r/n"
-			script_dict[script_dict.size() + 1] = "1/r/n"
-			script_dict[script_dict.size() + 1] = "0/r/n"
-			script_dict[script_dict.size() + 1] = (trench_row_data["trench_row_" + str(k)]["trench_unit"]) + "/r/n"
-			
-			last_depth = last_depth - float(trench_row_data["trench_row_" + str(k)]["trench_depth"]) / 5
-		k += 1
+	var data_size = trench_row_data.size()
+	
+	var attitude_positions = attitude_data(last_depth, trench_centerline, data_size, trench_row_data, trench_outline_start, trench_specific_data)
+	
+	for data in attitude_positions:
+		script_dict[script_dict.size() + 1] = attitude_positions[data]
+		print(attitude_positions[data])
 		pass
 	
 	#generate script file
@@ -266,3 +250,33 @@ func new_trench_outline(td): #td = total depth of trench
 		outline_points[outline_points.size() + 1] = str(lines_right_chosen[i].x) + "," + str(lines_right_chosen[i].y) + "\r\n"
 		pass
 	return outline_points
+	
+	
+	
+func attitude_data(last_depth, trench_centerline, data_size, trench_row_data, trench_outline_start, trench_specific_data):
+	var data_fixed : Dictionary = {}
+	for i in range(0, data_size):
+		var x_pos : float = trench_centerline.x
+		var y_pos_next : float
+
+		if (i + 1) == data_size:
+			y_pos_next = trench_outline_start.y - float(trench_specific_data["trench_total_depth"]) / 5
+		else:
+			y_pos_next = (float(trench_row_data["trench_row_" + str(i+1)]["trench_depth"]) / 5)
+
+		var y_pos : float = (last_depth + y_pos_next) / 2
+		
+		if trench_row_data["trench_row_" + str(i)]["trench_unit"] != "":
+			data_fixed[data_fixed.size() + 1] = "clayer 0\r\n"
+			data_fixed[data_fixed.size() + 1] = "-Insert\r\n"
+			data_fixed[data_fixed.size() + 1] = "geoatt\r\n"
+			data_fixed[data_fixed.size() + 1] = "%s,%s\r\n" % [x_pos, y_pos]
+			data_fixed[data_fixed.size() + 1] = "1\r\n"
+			data_fixed[data_fixed.size() + 1] = "1\r\n"
+			data_fixed[data_fixed.size() + 1] = "0\r\n"
+			data_fixed[data_fixed.size() + 1] = (trench_row_data["trench_row_" + str(i)]["trench_unit"]) + "\r\n"
+			
+			last_depth = last_depth - float(trench_row_data["trench_row_" + str(i)]["trench_depth"]) / 5
+#		k += 1
+		pass
+	return data_fixed
