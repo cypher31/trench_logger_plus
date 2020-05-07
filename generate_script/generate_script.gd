@@ -20,8 +20,9 @@ func new_script(trench_specific_data, trench_row_data):
 	script_dict[script_dict.size() + 1] = "OSMODE 0\r\n"
 	script_dict[script_dict.size() + 1] = "SNAP OFF\r\n"
 	script_dict[script_dict.size() + 1] = "-layout delete %s\r\n" % trench_number
-	script_dict[script_dict.size() + 1] = "layout s master\r\n"
-	script_dict[script_dict.size() + 1] = "-layout c master %s\r\n" % trench_number
+	script_dict[script_dict.size() + 1] = "-layout s master\r\n"
+	script_dict[script_dict.size() + 1] = "-layout c master\r\n"
+	script_dict[script_dict.size() + 1] = "%s\r\n" % trench_number
 	script_dict[script_dict.size() + 1] = "layout s %s\r\n" % trench_number
 	script_dict[script_dict.size() + 1] = "clayer 0\r\n"
 	script_dict[script_dict.size() + 1] = "-Insert\r\n"
