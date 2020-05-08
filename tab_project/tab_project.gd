@@ -14,6 +14,9 @@ func _ready():
 	var button_new_trench = $tab_master/vbox/mc/vbox/button_add_trench
 	var pop_up_new_trench = $tab_master/vbox/mc/vbox/button_add_trench/new_trench_pop
 	
+	var button_all_script = $tab_master/vbox/mc/vbox/button_all_scripts
+	var pop_up_all_script = $tab_master/vbox/mc/vbox/button_all_scripts/all_script_popup
+	
 	var button_about = $tab_master/vbox/mc/vbox/button_about
 	var pop_up_about = $tab_master/vbox/mc/vbox/button_about/about_pop
 	
@@ -27,6 +30,9 @@ func _ready():
 
 	button_new_trench.connect("button_up", self, "new_trench")
 	pop_up_new_trench.connect("confirmed", self, "new_trench_pop_up")
+	
+	button_all_script.connect("button_up", self, "all_script")
+	pop_up_all_script.connect("confirmed", self, "all_script_pop_up")
 	
 	button_about.connect("button_up", self, "_about_popup")
 	pass # Replace with function body.
@@ -92,3 +98,15 @@ func new_trench_pop_up():
 func _on_user_input_item_selected(ID):
 	emit_signal("units_changed")
 	pass # Replace with function body.
+	
+	
+func all_script():
+	var pop_up = $tab_master/vbox/mc/vbox/button_all_scripts/all_script_popup
+	pop_up.popup_centered()
+	return
+	
+	
+func all_script_pop_up():
+	utility.emit_signal("generate_all_scripts")
+	print(false)
+	return
