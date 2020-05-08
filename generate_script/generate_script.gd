@@ -15,9 +15,9 @@ func new_script(trench_specific_data, trench_row_data):
 
 	var trench_number = trench_specific_data["trench_number"]
 
-	script_dict[script_dict.size() + 1] = "; created" + date_formatted #key denotes the line number
-	script_dict[script_dict.size() + 1] = "(setq oldosmode (getvar \"OSMODE\"))\r\n"
-	script_dict[script_dict.size() + 1] = "OSMODE 0\r\n"
+	script_dict[script_dict.size() + 1] = ";created" + date_formatted #key denotes the line number
+#	script_dict[script_dict.size() + 1] = "(setq oldosmode (getvar \"OSMODE\"))\r\n"
+#	script_dict[script_dict.size() + 1] = "OSMODE 0\r\n"
 	script_dict[script_dict.size() + 1] = "SNAP OFF\r\n"
 	script_dict[script_dict.size() + 1] = "-layout delete %s\r\n" % trench_number
 	script_dict[script_dict.size() + 1] = "-layout s master\r\n"
@@ -57,6 +57,7 @@ func new_script(trench_specific_data, trench_row_data):
 	
 	script_dict[script_dict.size() + 1] = "pline\r\n"
 	
+	#create commands for soil data
 	for data in trench_outline:
 		script_dict[script_dict.size() + 1] = trench_outline[data]
 		pass
@@ -64,7 +65,7 @@ func new_script(trench_specific_data, trench_row_data):
 	#extra clear
 	script_dict[script_dict.size() + 1] = "\r\n"
 	
-	#generate geoatt within trench outline
+	#variables for creating commands for geo unit and contact positions
 	var k : int = 0
 	
 	var trench_outline_start = Vector2(trench_outline[1].strip_edges().split_floats(",")[0], trench_outline[1].strip_edges().split_floats(",")[1])
@@ -84,16 +85,29 @@ func new_script(trench_specific_data, trench_row_data):
 	
 	var unit_positions = get_unit_positions(unit_data, trench_centerline, trench_total_depth)
 	
+	#create commands for inserting geo units
 	for data in unit_positions[0]:
 		script_dict[script_dict.size() + 1] = unit_positions[0][data]
 		pass
 	
 	var contact_positions = get_contact_positions(unit_data, trench_start_end, trench_centerline)
 	
+	#create commands for drawing contact lines
 	for data in contact_positions:
 		script_dict[script_dict.size() + 1] = contact_positions[data]
 		pass
 	
+	#check if sloped trench or not
+	var trench_slope : float = float(trench_specific_data["trench_slope"])
+	
+	if trench_slope > 0.0:
+		var trench_slope_line = get_trench_slope_line(trench_slope, trench_outline_end)
+		
+		for data in trench_slope_line:
+			script_dict[script_dict.size() + 1] = trench_slope_line[data]
+			pass
+		pass
+		
 	#generate script file
 	var file = File.new()
 	var file_date = str(date["month"]) + "_" + str(date["day"]) + "_" + str(date["year"])
@@ -338,3 +352,24 @@ func get_contact_positions(positions : Dictionary, trench_start_end, trench_cent
 		pass
 
 	return contact_positions
+	
+	
+
+func get_trench_slope_line(trench_slope, trench_outline_end):
+	var trench_slope_line : Dictionary
+	var slope : float = deg2rad(trench_slope)
+	var start_point : Vector2 = trench_outline_end - Vector2(0.25,0)
+	var end_point : Vector2
+	var deltaX : float
+	var deltaY : float
+	
+	deltaX = 6 #end of line will be 6 inches to the left of start point
+	deltaY = deltaX*tan(slope)
+	
+	end_point = start_point - Vector2(deltaX, deltaY)
+
+	trench_slope_line[trench_slope_line.size() + 1] = "line\r\n"
+	trench_slope_line[trench_slope_line.size() + 1] = "%s,%s\r\n" % [start_point.x, start_point.y]
+	trench_slope_line[trench_slope_line.size() + 1] = "%s,%s\r\n"  % [end_point.x, end_point.y]
+	trench_slope_line[trench_slope_line.size() + 1] = "\r\n"
+	return trench_slope_line
