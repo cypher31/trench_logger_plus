@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://gui/gui.gd" type="Script" id=1]
 [ext_resource path="res://tab_project/tab_project.tscn" type="PackedScene" id=2]
-[ext_resource path="res://tab_trench/tab_trench.tscn" type="PackedScene" id=3]
 
 [sub_resource type="Theme" id=1]
 
@@ -102,13 +101,11 @@ rect_min_size = Vector2( 750, 275 )
 [node name="button_add_trench" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="7"]
 margin_right = 952.0
 
-[node name="user_messages" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="8"]
+[node name="button_all_scripts" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="8"]
 margin_right = 952.0
 
-[node name="TP-1" parent="mc/hbox/vbox/tab_cont" instance=ExtResource( 3 )]
-visible = false
-margin_top = 24.0
-margin_right = 0.0
+[node name="user_messages" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="9"]
+margin_right = 952.0
 
 [node name="set_working_dir_warning" type="AcceptDialog" parent="."]
 margin_right = 83.0
@@ -132,7 +129,3 @@ wrap_enabled = true
 [editable path="mc/hbox/vbox/tab_cont/Project/tab_master"]
 
 [editable path="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox/input_proj_number"]
-
-[editable path="mc/hbox/vbox/tab_cont/TP-1"]
-
-[editable path="mc/hbox/vbox/tab_cont/TP-1/tab_master"]

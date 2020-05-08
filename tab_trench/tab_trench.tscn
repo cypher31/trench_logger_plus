@@ -27,39 +27,39 @@ margin_right = 952.0
 margin_bottom = 259.0
 
 [node name="mc" parent="tab_master/vbox" index="0"]
-margin_right = 952.0
+margin_right = 964.0
 margin_bottom = 459.0
 
 [node name="vbox" type="VBoxContainer" parent="tab_master/vbox/mc" index="0"]
-margin_right = 952.0
+margin_right = 964.0
 margin_bottom = 459.0
 
 [node name="trench_descriptions" type="HBoxContainer" parent="tab_master/vbox/mc/vbox"]
-margin_right = 952.0
+margin_right = 964.0
 margin_bottom = 170.0
 
 [node name="vbox_left" type="VBoxContainer" parent="tab_master/vbox/mc/vbox/trench_descriptions"]
-margin_right = 474.0
+margin_right = 480.0
 margin_bottom = 170.0
 size_flags_horizontal = 3
 
 [node name="user_input_trench_date" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" instance=ExtResource( 3 )]
-margin_right = 474.0
+margin_right = 480.0
 size_flags_horizontal = 1
 
 [node name="input_label" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_date" index="0"]
 text = "Date"
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_date" index="1"]
-margin_right = 470.0
+margin_right = 476.0
 
 [node name="input_units" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_date" index="2"]
-margin_left = 474.0
-margin_right = 474.0
+margin_left = 480.0
+margin_right = 480.0
 
 [node name="user_input_trench_number" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" instance=ExtResource( 3 )]
 margin_top = 29.0
-margin_right = 474.0
+margin_right = 480.0
 margin_bottom = 54.0
 size_flags_horizontal = 1
 
@@ -67,15 +67,15 @@ size_flags_horizontal = 1
 text = "Trench No."
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_number" index="1"]
-margin_right = 470.0
+margin_right = 476.0
 
 [node name="input_units" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_number" index="2"]
-margin_left = 474.0
-margin_right = 474.0
+margin_left = 480.0
+margin_right = 480.0
 
 [node name="user_input_location" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" instance=ExtResource( 3 )]
 margin_top = 58.0
-margin_right = 474.0
+margin_right = 480.0
 margin_bottom = 83.0
 size_flags_horizontal = 1
 
@@ -83,15 +83,15 @@ size_flags_horizontal = 1
 text = "Location"
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_location" index="1"]
-margin_right = 470.0
+margin_right = 476.0
 
 [node name="input_units" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_location" index="2"]
-margin_left = 474.0
-margin_right = 474.0
+margin_left = 480.0
+margin_right = 480.0
 
 [node name="user_input_logged_by" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" instance=ExtResource( 3 )]
 margin_top = 87.0
-margin_right = 474.0
+margin_right = 480.0
 margin_bottom = 112.0
 size_flags_horizontal = 1
 
@@ -99,15 +99,15 @@ size_flags_horizontal = 1
 text = "Logged By"
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_logged_by" index="1"]
-margin_right = 470.0
+margin_right = 476.0
 
 [node name="input_units" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_logged_by" index="2"]
-margin_left = 474.0
-margin_right = 474.0
+margin_left = 480.0
+margin_right = 480.0
 
 [node name="user_input_equipment" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" instance=ExtResource( 3 )]
 margin_top = 116.0
-margin_right = 474.0
+margin_right = 480.0
 margin_bottom = 141.0
 size_flags_horizontal = 1
 
@@ -115,15 +115,15 @@ size_flags_horizontal = 1
 text = "Equipment"
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_equipment" index="1"]
-margin_right = 470.0
+margin_right = 476.0
 
 [node name="input_units" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_equipment" index="2"]
-margin_left = 474.0
-margin_right = 474.0
+margin_left = 480.0
+margin_right = 480.0
 
 [node name="user_input_total_depth" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left" instance=ExtResource( 3 )]
 margin_top = 145.0
-margin_right = 474.0
+margin_right = 480.0
 margin_bottom = 170.0
 size_flags_horizontal = 1
 
@@ -131,99 +131,100 @@ size_flags_horizontal = 1
 text = "Total Depth (ft)"
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_total_depth" index="1"]
-margin_right = 470.0
+margin_right = 476.0
 
 [node name="input_units" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_total_depth" index="2"]
-margin_left = 474.0
-margin_right = 474.0
+margin_left = 480.0
+margin_right = 480.0
 
 [node name="vbox_right" type="VBoxContainer" parent="tab_master/vbox/mc/vbox/trench_descriptions"]
-margin_left = 478.0
-margin_right = 952.0
+margin_left = 484.0
+margin_right = 964.0
 margin_bottom = 170.0
 size_flags_horizontal = 3
 
 [node name="user_input_elevation" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right" instance=ExtResource( 3 )]
-margin_right = 474.0
+margin_right = 480.0
 
 [node name="input_label" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_elevation" index="0"]
 text = "Elevation (ft)"
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_elevation" index="1"]
-margin_right = 470.0
+margin_right = 476.0
 
 [node name="input_units" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_elevation" index="2"]
-margin_left = 474.0
-margin_right = 474.0
+margin_left = 480.0
+margin_right = 480.0
 
 [node name="user_input_groundwater" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right" instance=ExtResource( 3 )]
 margin_top = 29.0
-margin_right = 474.0
+margin_right = 480.0
 margin_bottom = 54.0
 
 [node name="input_label" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_groundwater" index="0"]
 text = "Groundwater (ft)"
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_groundwater" index="1"]
-margin_right = 470.0
+margin_right = 476.0
 
 [node name="input_units" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_groundwater" index="2"]
-margin_left = 474.0
-margin_right = 474.0
+margin_left = 480.0
+margin_right = 480.0
 
 [node name="user_input_scale" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right" instance=ExtResource( 3 )]
 margin_top = 58.0
-margin_right = 474.0
+margin_right = 480.0
 margin_bottom = 83.0
 
 [node name="input_label" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_scale" index="0"]
 text = "Scale 1 in = (ft)"
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_scale" index="1"]
-margin_right = 470.0
+margin_right = 476.0
 
 [node name="input_units" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_scale" index="2"]
-margin_left = 474.0
-margin_right = 474.0
+margin_left = 480.0
+margin_right = 480.0
 
 [node name="user_input_slope" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right" instance=ExtResource( 3 )]
 margin_top = 87.0
-margin_right = 474.0
+margin_right = 480.0
 margin_bottom = 112.0
 
 [node name="input_label" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_slope" index="0"]
 text = "Slope (degrees)"
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_slope" index="1"]
-margin_right = 470.0
+margin_right = 476.0
 
 [node name="input_units" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_slope" index="2"]
-margin_left = 474.0
-margin_right = 474.0
+margin_left = 480.0
+margin_right = 480.0
 
 [node name="user_input_trend" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right" instance=ExtResource( 3 )]
 margin_top = 116.0
-margin_right = 474.0
+margin_right = 480.0
 margin_bottom = 141.0
 
 [node name="input_label" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_trend" index="0"]
 text = "Trend"
 
 [node name="user_input" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_trend" index="1"]
-margin_right = 470.0
+margin_right = 476.0
 
 [node name="input_units" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/user_input_trend" index="2"]
-margin_left = 474.0
-margin_right = 474.0
+margin_left = 480.0
+margin_right = 480.0
 
 [node name="button_script" type="Button" parent="tab_master/vbox/mc/vbox/trench_descriptions/vbox_right"]
 margin_top = 145.0
-margin_right = 474.0
+margin_right = 480.0
 margin_bottom = 165.0
 text = "MAKE SCRIPT"
 
 [node name="trench_input_row" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 4 )]
 margin_top = 174.0
+margin_right = 964.0
 margin_bottom = 222.0
 
 [node name="trench_depth" parent="tab_master/vbox/mc/vbox/trench_input_row" index="0"]
@@ -265,9 +266,11 @@ margin_bottom = 48.0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="tab_master/vbox/mc/vbox"]
 margin_top = 226.0
-margin_right = 952.0
+margin_right = 964.0
 margin_bottom = 376.0
 rect_min_size = Vector2( 0, 150 )
+mouse_filter = 1
+follow_focus = true
 scroll_horizontal_enabled = false
 
 [node name="trench_data" type="VBoxContainer" parent="tab_master/vbox/mc/vbox/ScrollContainer"]
@@ -289,7 +292,7 @@ stretch_mode = 1
 
 [node name="mc" type="MarginContainer" parent="tab_master/vbox/mc/vbox"]
 margin_top = 409.0
-margin_right = 952.0
+margin_right = 964.0
 margin_bottom = 459.0
 custom_constants/margin_top = 25
 

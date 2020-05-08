@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://tab_project/tab_project.gd" type="Script" id=1]
 [ext_resource path="res://tab_master/tab_master.tscn" type="PackedScene" id=2]
 [ext_resource path="res://user_input_entry/user_input_entry.tscn" type="PackedScene" id=3]
 [ext_resource path="res://question_popup/question_popup.tscn" type="PackedScene" id=4]
+[ext_resource path="res://all_script_popup/all_script_popup.tscn" type="PackedScene" id=5]
 
 [node name="tab_project" type="Control"]
 anchor_bottom = 1.0
@@ -27,11 +28,11 @@ margin_bottom = 213.0
 
 [node name="mc" parent="tab_master/vbox" index="0"]
 margin_right = 974.0
-margin_bottom = 436.0
+margin_bottom = 460.0
 
 [node name="vbox" type="VBoxContainer" parent="tab_master/vbox/mc" index="0"]
 margin_right = 974.0
-margin_bottom = 436.0
+margin_bottom = 460.0
 rect_min_size = Vector2( 974, 0 )
 
 [node name="input_proj_number" parent="tab_master/vbox/mc/vbox" instance=ExtResource( 3 )]
@@ -168,10 +169,19 @@ text = "Add Trench"
 
 [node name="new_trench_pop" parent="tab_master/vbox/mc/vbox/button_add_trench" instance=ExtResource( 4 )]
 
-[node name="user_messages" type="TextEdit" parent="tab_master/vbox/mc/vbox"]
+[node name="button_all_scripts" type="Button" parent="tab_master/vbox/mc/vbox"]
 margin_top = 212.0
 margin_right = 974.0
-margin_bottom = 412.0
+margin_bottom = 232.0
+text = "Caution !! Generate All Scripts !! Cauton"
+
+[node name="all_script_popup" parent="tab_master/vbox/mc/vbox/button_all_scripts" instance=ExtResource( 5 )]
+visible = false
+
+[node name="user_messages" type="TextEdit" parent="tab_master/vbox/mc/vbox"]
+margin_top = 236.0
+margin_right = 974.0
+margin_bottom = 436.0
 rect_min_size = Vector2( 0, 200 )
 text = "
 1. If there is no system path in the 'Working Directory' then click on 'Change Working Directory' to set where your project and scripts will be saved
@@ -183,9 +193,9 @@ readonly = true
 wrap_enabled = true
 
 [node name="button_about" type="Button" parent="tab_master/vbox/mc/vbox"]
-margin_top = 416.0
+margin_top = 440.0
 margin_right = 107.0
-margin_bottom = 436.0
+margin_bottom = 460.0
 size_flags_horizontal = 0
 text = "About Program"
 

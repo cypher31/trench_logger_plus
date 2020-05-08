@@ -1,0 +1,36 @@
+[gd_scene format=2]
+
+[node name="all_script_popup" type="ConfirmationDialog"]
+margin_left = 406.381
+margin_top = -342.539
+margin_right = 656.381
+margin_bottom = -256.539
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbox" type="VBoxContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 242.0
+margin_bottom = 56.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="vbox"]
+margin_right = 233.0
+margin_bottom = 48.0
+text = "Confirm You Want to Generate an
+All Script File. This Will Overwrite
+All Existing Scripts in Directory."
+align = 1
+
+[node name="LineEdit" type="LineEdit" parent="vbox"]
+visible = false
+margin_top = 18.0
+margin_right = 234.0
+margin_bottom = 42.0
+align = 1
+clear_button_enabled = true
+placeholder_text = "Enter Trench Label (Ex. TP-1)"

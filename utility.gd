@@ -74,17 +74,7 @@ var tab_scene_dictionary = {
 	"tab_trench" : tab_trench
 	}
 
-#music dictionary
-
-var music_dict = {
-
-	}
-
-#sound sfx dictionary
-
-var sfxDict = {
-
-	}
+signal generate_all_scripts
 
 func _ready():
 	randomize()
@@ -263,26 +253,26 @@ func __saveGameState():
 #	__gameState.HIGHSCORES = paramVal;
 #	return;
 	
-func change_music(audio):
-	var stream_music = get_tree().get_current_scene().get_node("sound_player_music")
-	
-	stream_music.set_stream(music_dict[audio])
-	stream_music.play()
-	pass
-	
-func play_sound_effect(sfx, bus, free):
-	var stream_sfx = bus
-	bus.connect("finished", self, "sfx_finished", [bus, free])
-	
-	stream_sfx.set_stream(sfxDict[sfx]) #sfx should be called from sfx dictionary
-	stream_sfx.play()
-	
-	pass
-	
-func sfx_finished(bus,free):
-	if free:
-		bus.queue_free()
-	pass
+#func change_music(audio):
+#	var stream_music = get_tree().get_current_scene().get_node("sound_player_music")
+#
+#	stream_music.set_stream(music_dict[audio])
+#	stream_music.play()
+#	pass
+#
+#func play_sound_effect(sfx, bus, free):
+#	var stream_sfx = bus
+#	bus.connect("finished", self, "sfx_finished", [bus, free])
+#
+#	stream_sfx.set_stream(sfxDict[sfx]) #sfx should be called from sfx dictionary
+#	stream_sfx.play()
+#
+#	pass
+#
+#func sfx_finished(bus,free):
+#	if free:
+#		bus.queue_free()
+#	pass
 	
 func create_new_tab(tab_type, tab_name):
 	var tab_container = get_tree().get_current_scene().get_node("PanelContainer/gui/mc/hbox/vbox/tab_cont")

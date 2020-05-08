@@ -38,7 +38,8 @@ func _ready():
 	pop_up_delete.connect("confirmed", self, "_delete_popup")
 	
 	$tab_master/vbox/mc/vbox/button_add_row.connect("button_up", self, "add_row")
-	$tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/button_script.connect("button_up", self, "new_script")
+	$tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/button_script.connect("button_up", self, "new_script", ["single"])
+	utility.connect("generate_all_scripts", self, "new_script", ["all"])
 	
 	$tab_master/vbox/mc/vbox/mc/button_delete_trench.connect("button_up", self, "_show_delete_popup")
 	
@@ -118,11 +119,22 @@ func update_trench_dict():
 	return [trench_project_dict, trench_dict]
 
 
-func new_script():
+func new_script(button):
 	var trench_name : String = get_name()
 	data_management.dictionary_trench_data[trench_name] = update_trench_dict() #send data to be saved
 	
 	var data = data_management.dictionary_trench_data[trench_name]
+	var file_name : String
+	
+#	var date = OS.get_date()
+#	var date_formatted = str(date["month"]) + "/" + str(date["day"]) + "/" + str(date["year"]) + "\r\n"
+#	var file_date = str(date["month"]) + "_" + str(date["day"]) + "_" + str(date["year"])
+	
+#	if button == "all":
+#		trench_name = "ALL_TRENCHES"
+#		pass
+	
+#	file_name = data_management.working_dir + "/" + file_date + "_" + trench_name + "_script.txt"
 	
 	generate_script.new_script(data[0], data[1])
 	pass
@@ -161,7 +173,6 @@ func load_trench_data():
 		current_row.get_node("trench_density").set_text(data_management.dictionary_trench_data[get_name()][1]["trench_row_" + str(j)]["trench_density"])
 		pass
 		
-#	data_management.emit_signal("save_project")
 	pass
 	
 func _update_tab_name(new_text : String):
