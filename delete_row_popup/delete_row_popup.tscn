@@ -1,0 +1,32 @@
+[gd_scene format=2]
+
+[node name="delete_row_popup" type="ConfirmationDialog"]
+visible = true
+margin_left = 252.63
+margin_top = -2.21606
+margin_right = 502.63
+margin_bottom = 83.7839
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="vbox" type="VBoxContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 242.0
+margin_bottom = 50.0
+
+[node name="Label" type="Label" parent="vbox"]
+margin_right = 234.0
+margin_bottom = 14.0
+text = "Confrim Row Deletion"
+align = 1
+
+[node name="LineEdit" type="LineEdit" parent="vbox"]
+visible = false
+margin_top = 18.0
+margin_right = 234.0
+margin_bottom = 42.0
+align = 1
+clear_button_enabled = true
+placeholder_text = "Enter Trench Name to Delete"

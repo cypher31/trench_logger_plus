@@ -108,5 +108,4 @@ func all_script():
 	
 func all_script_pop_up():
 	utility.emit_signal("generate_all_scripts")
-	print(false)
 	return

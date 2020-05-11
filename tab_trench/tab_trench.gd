@@ -34,6 +34,7 @@ var trench_dict : Dictionary = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var pop_up_delete = $delete_popup
+	var pop_up_row_delete = $delete_row_popup
 	
 	pop_up_delete.connect("confirmed", self, "_delete_popup")
 	
@@ -104,11 +105,15 @@ func update_trench_dict():
 	for trench_row in trench_rows:
 		for data_item in trench_row.get_children():
 			
-			if data_item.get_text() != "":
-				trench_row_data[data_item.get_name()] = data_item.get_text()
+			if data_item is TextureButton:
+				pass
 			else:
-				trench_row_data[data_item.get_name()] = ""
-			pass
+				if data_item.get_text() != "":
+					trench_row_data[data_item.get_name()] = data_item.get_text()
+				else:
+					trench_row_data[data_item.get_name()] = ""
+				pass
+				
 		trench_dict["trench_row_" + str(trench_row.get_index())] = trench_row_data.duplicate()
 		
 		trench_row_data.clear()

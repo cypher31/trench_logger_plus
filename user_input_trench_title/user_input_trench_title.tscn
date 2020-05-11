@@ -5,6 +5,9 @@ margin_right = 952.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 800, 0 )
 size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="trench_depth" type="Label" parent="."]
 margin_top = 30.0
@@ -35,36 +38,36 @@ align = 1
 [node name="trench_description" type="Label" parent="."]
 margin_left = 186.0
 margin_top = 30.0
-margin_right = 642.0
+margin_right = 595.0
 margin_bottom = 44.0
-rect_min_size = Vector2( 456, 5 )
+rect_min_size = Vector2( 400, 5 )
 size_flags_horizontal = 3
 text = "Soil Description"
 align = 1
 valign = 1
 
 [node name="trench_geo_unit" type="Label" parent="."]
-margin_left = 646.0
+margin_left = 599.0
 margin_top = 30.0
-margin_right = 704.0
+margin_right = 657.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 58, 5 )
 text = "Geo Unit"
 align = 1
 
 [node name="trench_uscs" type="Label" parent="."]
-margin_left = 708.0
+margin_left = 661.0
 margin_top = 30.0
-margin_right = 766.0
+margin_right = 719.0
 margin_bottom = 44.0
 rect_min_size = Vector2( 58, 5 )
 text = "USCS"
 align = 1
 
 [node name="trench_sample_no" type="Label" parent="."]
-margin_left = 770.0
+margin_left = 723.0
 margin_top = 22.0
-margin_right = 828.0
+margin_right = 781.0
 margin_bottom = 53.0
 rect_min_size = Vector2( 58, 5 )
 text = "Sample 
@@ -72,9 +75,9 @@ No."
 align = 1
 
 [node name="trench_moisture" type="Label" parent="."]
-margin_left = 832.0
+margin_left = 785.0
 margin_top = 22.0
-margin_right = 890.0
+margin_right = 843.0
 margin_bottom = 53.0
 rect_min_size = Vector2( 58, 5 )
 text = "Moist
@@ -82,12 +85,22 @@ text = "Moist
 align = 1
 
 [node name="trench_density" type="Label" parent="."]
-margin_left = 894.0
+margin_left = 847.0
 margin_top = 13.0
-margin_right = 952.0
+margin_right = 905.0
 margin_bottom = 61.0
 rect_min_size = Vector2( 58, 5 )
 text = "Dry 
 Density
 (pcf)"
+align = 1
+
+[node name="trench_delete" type="Label" parent="."]
+margin_left = 909.0
+margin_top = 22.0
+margin_right = 958.0
+margin_bottom = 53.0
+rect_min_size = Vector2( 49, 5 )
+text = "Delete
+Row"
 align = 1
