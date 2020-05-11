@@ -104,10 +104,9 @@ func load_data(data_path):
 	
 	load_data.close()
 	
-	for trench in dictionary_trench_data:
-		if trench != "TP-1":
-			utility.create_new_tab("tab_trench", trench)
+	var check = utility.start_load_data(dictionary_trench_data)
 	
-	emit_signal("load_project")
+	if check:
+		utility.generate_trenches_to_load(dictionary_trench_data)
 	return
 

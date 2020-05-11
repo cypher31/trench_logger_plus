@@ -294,3 +294,30 @@ func add_data_row(row_scene, row_container, current_row_count):
 func delete_trench(trench):
 	trench.queue_free()
 	return
+	
+	
+func start_load_data(full_trench_dict):
+	var tab_container = get_tree().get_current_scene().get_node("PanelContainer/gui/mc/hbox/vbox/tab_cont")
+	var tab_child_count = tab_container.get_child_count()
+
+	if tab_child_count > 1:
+		for i in range(1, tab_child_count):
+			var curr_child = tab_container.get_child(i)
+			if curr_child.get_name() != "project":
+				curr_child.queue_free()
+		return true
+
+	return true
+	
+	
+func generate_trenches_to_load(full_trench_dict):
+	var tab_container = get_tree().get_current_scene().get_node("PanelContainer/gui/mc/hbox/vbox/tab_cont")
+	for trench in full_trench_dict:
+			if tab_container.has_node(trench):
+				tab_container.get_node(trench).free()
+				create_new_tab("tab_trench", trench)
+			else:
+				create_new_tab("tab_trench", trench)
+	
+	data_management.emit_signal("load_project")
+	return
