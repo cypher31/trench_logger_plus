@@ -61,7 +61,7 @@ func save_data():
 		var minute = date_time["minute"]
 		
 		if int(minute) < 10:
-			minute = "0" + date_time["minute"]
+			minute = "0" + str(date_time["minute"])
 		
 		var text : String = output_text + "\r\n" + text_standard + " " + save_file_name + " Completed at %s:%s on %s/%s" % [hour, minute, month, day]
 		

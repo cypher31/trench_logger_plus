@@ -176,7 +176,7 @@ func new_trench_outline(td): #td = total depth of trench
 	var current_pos_left_y : float = 2.7
 	var current_pos_right_y : float
 
-	total_side_lines = int(td)
+	total_side_lines = float(td)
 
 	#assign lines
 
@@ -185,45 +185,71 @@ func new_trench_outline(td): #td = total depth of trench
 #	, Vector2(0.0415823, 0.1956295), Vector2(0.0483844, 0.1940591), Vector2(0.0551275, 0.1922523), Vector2(0.0618037, 0.1902112), Vector2(0.0684048, 0.1879382)]
 	
 	#calc center of trench
-	if int(td) <= 5:
-		trench_center = start_point + Vector2((5 / 5) / 2, -5/5)
-	elif int(td) > 5 and int(td) <= 10:
-		trench_center = start_point + Vector2((10 / 5) / 2, -10/5)
-	elif int(td) > 10 and int(td) <= 15:
-		trench_center = start_point + Vector2((15 / 5) / 2, -15/5)
-	elif int(td) > 15:
-		trench_center = start_point + Vector2((20 / 5) / 2, -15/5)
+#	if int(td) <= 5:
+#		trench_center = start_point + Vector2((5 / 5) / 2, 0)
+#	elif int(td) > 5 and int(td) <= 10:
+#		trench_center = start_point + Vector2((10 / 5) / 2, 0)
+#	elif int(td) > 10 and int(td) <= 15:
+#		trench_center = start_point + Vector2((15 / 5) / 2, 0)
+#	elif int(td) > 15:
+#		trench_center = start_point + Vector2((20 / 5) / 2, 0)
+
+	trench_center = start_point + Vector2(float(td) / 5.0 - 1, 0) / 2
 	
-	end_point = start_point + trench_center
-	
+	end_point = trench_center * Vector2(2,1)
+
 	#assign minimum unit vectors
-	var unit_left_length = 0.5
-	var unit_right_length = 0.5
+	var unit_left_length : float
+	var unit_right_length : float
+	var unit_angle_min_left : float
+	var unit_angle_max_left : float
+	var unit_angle_min_right : float
+	var unit_angle_max_right : float
 	
-	var unit_left_x : float = 0.707
-	var unit_left_y : float = -0.707
-	var unit_right_x : float = 0.707
-	var unit_right_y : float = 0.707
+	
+	if float(td) <= 10:
+		unit_angle_min_left = deg2rad(360)
+		unit_angle_max_left = deg2rad(270)
+		
+		unit_angle_min_right = deg2rad(45)
+		unit_angle_max_right = deg2rad(90)
+		
+		unit_left_length = 0.25
+		unit_right_length = 0.25
+	else:
+		unit_angle_min_left = deg2rad(315)
+		unit_angle_max_left = deg2rad(270)
+		
+		unit_angle_min_right = deg2rad(45)
+		unit_angle_max_right = deg2rad(90)
+		
+		unit_left_length = 0.25
+		unit_right_length = 0.25
+	
+#	var unit_left_x : float = unit_angle_min
+#	var unit_left_y : float = -unit_angle_min
+#	var unit_right_x : float = unit_angle_min
+#	var unit_right_y : float = unit_angle_min
 	
 	var multiplier : float = 0.25
 	
-	var left_end_generator : float = start_point.y - float(td) / 5
+	var left_end_generator : float = start_point.y - float(td) / 5.0
 	var right_end_generator : float = start_point.y
 
 	var i : int = 2
 	#create trench left side
 	while current_pos_left_y >= left_end_generator * (1.0 + multiplier):
-		var rand_dir_x = rand_range(0, unit_left_x)
-		var rand_dir_y = rand_range(unit_left_y, 0)
+		var rand_angle = rand_range(unit_angle_min_left, unit_angle_max_left)
 
 		if lines_left_chosen.size() == 0:
 			lines_left_chosen[1] = start_point - Vector2(0.25, 0) #drawing needs to start @ 1 inch
 			lines_left_chosen[2] = start_point
 		else:
-			lines_left_chosen[lines_left_chosen.size() + 1] = unit_left_length * Vector2(rand_dir_x, rand_dir_y) + lines_left_chosen[i - 1] #drawing needs to start @ 1 inch & be added to the last drawn line
+			lines_left_chosen[lines_left_chosen.size() + 1] = Vector2(unit_left_length * cos(rand_angle), unit_left_length * sin(rand_angle)) + lines_left_chosen[i - 1] #drawing needs to start @ 1 inch & be added to the last drawn line
 		
 		i += 1
 		current_pos_left_y = lines_left_chosen[i - 1].y
+		print("while")
 		pass
 	
 	var left_final_depth = lines_left_chosen[lines_left_chosen.size()]
@@ -231,32 +257,19 @@ func new_trench_outline(td): #td = total depth of trench
 	var distance_to_bottom = abs(bottom_elevation - left_final_depth.y)
 	
 	#create trench bottom
-	var j : int = 1
-	for i in range(0,3):
-		var rand_dir_x = rand_range(0, unit_right_x)
-		var rand_dir_y = rand_range(0, unit_right_y)
-		
-		if i == 0:
-			lines_bottom_chosen[lines_bottom_chosen.size() + 1] = Vector2(lines_left_chosen[lines_left_chosen.size()].x + 0.25, bottom_elevation)
-		elif i == 1:
-			lines_bottom_chosen[lines_bottom_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size()] + Vector2(0.5, 0)
-		elif i == 2:
-			lines_bottom_chosen[lines_bottom_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size()] + unit_right_length * Vector2(rand_dir_x, rand_dir_y)
-			lines_right_chosen[lines_right_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size()] + unit_right_length * Vector2(rand_dir_x, rand_dir_y)
-			
-			j += 1
-			current_pos_right_y = lines_right_chosen[j - 1].y
-		pass
-
+	lines_bottom_chosen[lines_bottom_chosen.size() + 1] = lines_left_chosen[lines_left_chosen.size()] + Vector2(3.0 / 5.0, 0)
+	lines_right_chosen[lines_right_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size()]
+	
+	current_pos_right_y = lines_right_chosen[lines_right_chosen.size()].y
+	
 	#create trench right side
 	while current_pos_right_y <= right_end_generator * (1.0 - multiplier):
-		var rand_dir_x = rand_range(0, unit_right_x)
-		var rand_dir_y = rand_range(0, unit_right_y)
+		var rand_angle = rand_range(unit_angle_min_right, unit_angle_max_right)
+		print(rand_angle)
+		lines_right_chosen[lines_right_chosen.size() + 1] = Vector2(unit_left_length * cos(rand_angle), unit_left_length * sin(rand_angle)) + lines_right_chosen[lines_right_chosen.size()] #drawing needs to start @ 1 inch & be added to the last drawn line
 		
-		lines_right_chosen[lines_right_chosen.size() + 1] = unit_right_length * Vector2(rand_dir_x, rand_dir_y) + lines_right_chosen[lines_right_chosen.size()] #drawing needs to start @ 1 inch & be added to the last drawn line
-		
-		j += 1
-		current_pos_right_y = lines_right_chosen[j - 1].y
+		current_pos_right_y = lines_right_chosen[lines_right_chosen.size() - 1].y
+		print("while#2")
 		pass
 
 	#connect last line
