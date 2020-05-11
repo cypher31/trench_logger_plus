@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://user_input_trench_entry/user_input_trench_entry.gd" type="Script" id=1]
+[ext_resource path="res://assets/button/red_button06.png" type="Texture" id=2]
+[ext_resource path="res://assets/button/red_button05.png" type="Texture" id=3]
+[ext_resource path="res://assets/button/red_button04.png" type="Texture" id=4]
+[ext_resource path="res://delete_row_popup/delete_row_popup.tscn" type="PackedScene" id=5]
 
 [node name="trench_input_row" type="HBoxContainer"]
 margin_right = 952.0
@@ -40,7 +44,7 @@ caret_blink = true
 
 [node name="trench_description" type="TextEdit" parent="."]
 margin_left = 186.0
-margin_right = 642.0
+margin_right = 590.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 200, 75 )
 mouse_filter = 1
@@ -48,8 +52,8 @@ size_flags_horizontal = 3
 wrap_enabled = true
 
 [node name="trench_geo_unit" type="LineEdit" parent="."]
-margin_left = 646.0
-margin_right = 704.0
+margin_left = 594.0
+margin_right = 652.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
 align = 1
@@ -57,8 +61,8 @@ placeholder_text = "Geo Unit"
 caret_blink = true
 
 [node name="trench_uscs" type="LineEdit" parent="."]
-margin_left = 708.0
-margin_right = 766.0
+margin_left = 656.0
+margin_right = 714.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
 align = 1
@@ -66,8 +70,8 @@ placeholder_text = "USCS"
 caret_blink = true
 
 [node name="trench_sample_no" type="LineEdit" parent="."]
-margin_left = 770.0
-margin_right = 828.0
+margin_left = 718.0
+margin_right = 776.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
 align = 1
@@ -75,8 +79,8 @@ placeholder_text = "Sample No."
 caret_blink = true
 
 [node name="trench_moisture" type="LineEdit" parent="."]
-margin_left = 832.0
-margin_right = 890.0
+margin_left = 780.0
+margin_right = 838.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
 align = 1
@@ -84,10 +88,28 @@ placeholder_text = "Moisture"
 caret_blink = true
 
 [node name="trench_density" type="LineEdit" parent="."]
-margin_left = 894.0
-margin_right = 952.0
+margin_left = 842.0
+margin_right = 900.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 0, 25 )
 align = 1
 placeholder_text = "Dry Density"
 caret_blink = true
+
+[node name="delete_row" type="TextureButton" parent="."]
+margin_left = 904.0
+margin_right = 953.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 49, 49 )
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+expand = true
+stretch_mode = 3
+
+[node name="delete_row_popup" parent="." instance=ExtResource( 5 )]
+visible = false
+margin_left = 753.0
+margin_top = 0.0
+margin_right = 953.0
+margin_bottom = 75.0

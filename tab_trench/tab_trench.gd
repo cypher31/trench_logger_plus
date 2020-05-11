@@ -34,6 +34,7 @@ var trench_dict : Dictionary = {}
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var pop_up_delete = $delete_popup
+	var pop_up_row_delete = $delete_row_popup
 	
 	pop_up_delete.connect("confirmed", self, "_delete_popup")
 	
