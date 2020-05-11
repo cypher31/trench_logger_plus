@@ -131,16 +131,32 @@ access = 2
 current_dir = "C:/Users/kelby/dev/software/tool/trench_logger_plus"
 current_path = "C:/Users/kelby/dev/software/tool/trench_logger_plus/"
 
-[node name="button_save_data" type="Button" parent="tab_master/vbox/mc/vbox"]
+[node name="button_add_trench" type="Button" parent="tab_master/vbox/mc/vbox"]
 margin_top = 140.0
 margin_right = 974.0
 margin_bottom = 160.0
-text = "Save Project"
+text = "Add Trench"
 
-[node name="button_load_data" type="Button" parent="tab_master/vbox/mc/vbox"]
+[node name="new_trench_pop" parent="tab_master/vbox/mc/vbox/button_add_trench" instance=ExtResource( 4 )]
+
+[node name="button_all_scripts" type="Button" parent="tab_master/vbox/mc/vbox"]
 margin_top = 164.0
 margin_right = 974.0
 margin_bottom = 184.0
+text = "Caution !! Generate All Scripts !! Cauton"
+
+[node name="all_script_popup" parent="tab_master/vbox/mc/vbox/button_all_scripts" instance=ExtResource( 5 )]
+
+[node name="button_save_data" type="Button" parent="tab_master/vbox/mc/vbox"]
+margin_top = 188.0
+margin_right = 974.0
+margin_bottom = 208.0
+text = "Save Project"
+
+[node name="button_load_data" type="Button" parent="tab_master/vbox/mc/vbox"]
+margin_top = 212.0
+margin_right = 974.0
+margin_bottom = 232.0
 text = "Load Project"
 
 [node name="file_search" type="FileDialog" parent="tab_master/vbox/mc/vbox/button_load_data"]
@@ -161,23 +177,6 @@ show_hidden_files = true
 current_dir = "C:/Users/kelby/dev/software/tool/trench_logger_plus"
 current_path = "C:/Users/kelby/dev/software/tool/trench_logger_plus/"
 
-[node name="button_add_trench" type="Button" parent="tab_master/vbox/mc/vbox"]
-margin_top = 188.0
-margin_right = 974.0
-margin_bottom = 208.0
-text = "Add Trench"
-
-[node name="new_trench_pop" parent="tab_master/vbox/mc/vbox/button_add_trench" instance=ExtResource( 4 )]
-
-[node name="button_all_scripts" type="Button" parent="tab_master/vbox/mc/vbox"]
-margin_top = 212.0
-margin_right = 974.0
-margin_bottom = 232.0
-text = "Caution !! Generate All Scripts !! Cauton"
-
-[node name="all_script_popup" parent="tab_master/vbox/mc/vbox/button_all_scripts" instance=ExtResource( 5 )]
-visible = false
-
 [node name="user_messages" type="TextEdit" parent="tab_master/vbox/mc/vbox"]
 margin_top = 236.0
 margin_right = 974.0
@@ -187,8 +186,7 @@ text = "
 1. If there is no system path in the 'Working Directory' then click on 'Change Working Directory' to set where your project and scripts will be saved
 2. Enter the relevant project info and your initials
 3. The project save file is named by  TODAYS date and the project # you input. If you work on the same project file over multiple days it will save as a new file each day, remember to choose the latest date when loading files. 
-4. Projects always start with 1 trench. If you want to add more click on 'Add Trench'
-5. The project saves automatically when certain functions are used. Check the messages below to see the last time the file was saved, if in doubt just click the save button above to save the project."
+4. The project saves automatically when certain functions are used. Check the messages below to see the last time the file was saved, if in doubt just click the save button above to save the project."
 readonly = true
 wrap_enabled = true
 
@@ -212,7 +210,7 @@ margin_left = 5.0
 margin_top = 5.0
 margin_right = 745.0
 margin_bottom = 270.0
-text = "Program Version: 0.7.5
+text = "Program Version: 1.0.0
 Program written by: Kelby Styler 
 Contact Info: kelbystyler@gmail.com, 949.375.4300
 

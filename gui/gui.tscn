@@ -107,6 +107,17 @@ margin_right = 952.0
 [node name="user_messages" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox" index="9"]
 margin_right = 952.0
 
+[node name="about_text" parent="mc/hbox/vbox/tab_cont/Project/tab_master/vbox/mc/vbox/button_about/about_pop" index="1"]
+text = "Program Version: 0.7.5
+Program written by: Kelby Styler 
+Contact Info: kelbystyler@gmail.com, 949.375.4300
+
+Program written in 2019/2020 to replace trench logger excel program. Program written using Godot Engine version 3.2.1.stable.official
+
+Source code for this program is saved in the Z drive. Last known file path below:
+
+Z://a;lskdjfa;lsdkjf;alksdjf;alskdjf;alsdkjfg;alsdkgja;sldkjgfa;sldkfj;asldkfj;lksdjf;"
+
 [node name="set_working_dir_warning" type="AcceptDialog" parent="."]
 margin_right = 83.0
 margin_bottom = 58.0

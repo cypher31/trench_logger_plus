@@ -40,6 +40,8 @@ func save_data():
 	
 	#create save file
 	#check if working directory has been selected...
+	working_dir = dictionary_project_data["working_dir"]
+	
 	if working_dir != "":
 		var save_project = File.new()
 		save_project.open(working_dir + "/" + save_file_name + ".tlp", File.WRITE)

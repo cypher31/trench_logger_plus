@@ -5,7 +5,6 @@ func _ready():
 	pass # Replace with function body.
 
 func new_script(trench_specific_data, trench_row_data):
-	data_management.save_data() #save data before creating script
 	data_management.emit_signal("save_project")
 	
 	var date = OS.get_date()
@@ -53,7 +52,7 @@ func new_script(trench_specific_data, trench_row_data):
 	script_dict[script_dict.size() + 1] = "-mtext 8.1,.9 s AR10\r\n j tl w 1.9 Total Depth: %s\r\n Groundwater: %s\r\n Backfilled: %s" % [trench_specific_data["trench_total_depth"], trench_specific_data["trench_groundwater"], "Enter Date\r\n\r\n"]
 
 	#generate trench outline
-	var trench_outline : Dictionary = new_trench_outline(trench_specific_data["trench_total_depth"])
+	var trench_outline : Dictionary = new_trench_outline(trench_specific_data["trench_total_depth"], trench_specific_data["trench_scale"])
 	
 	script_dict[script_dict.size() + 1] = "pline\r\n"
 	
@@ -83,14 +82,14 @@ func new_script(trench_specific_data, trench_row_data):
 	
 	var trench_total_depth = trench_specific_data["trench_total_depth"]
 	
-	var unit_positions = get_unit_positions(unit_data, trench_centerline, trench_total_depth)
+	var unit_positions = get_unit_positions(unit_data, trench_centerline, trench_total_depth, trench_specific_data["trench_scale"])
 	
 	#create commands for inserting geo units
 	for data in unit_positions[0]:
 		script_dict[script_dict.size() + 1] = unit_positions[0][data]
 		pass
 	
-	var contact_positions = get_contact_positions(unit_data, trench_start_end, trench_centerline)
+	var contact_positions = get_contact_positions(unit_data, trench_start_end, trench_centerline, trench_specific_data["trench_scale"])
 	
 	#create commands for drawing contact lines
 	for data in contact_positions:
@@ -162,7 +161,7 @@ func row_data(data):
 		pass
 	return data_fixed
 
-func new_trench_outline(td): #td = total depth of trench
+func new_trench_outline(td, ts): #td = total depth of trench, ts = trench scale
 	var outline_points : Dictionary = {}
 	var start_point : Vector2 = Vector2(1.0, 2.7)
 	var end_point : Vector2
@@ -172,6 +171,7 @@ func new_trench_outline(td): #td = total depth of trench
 	var lines_bottom_chosen : Dictionary = {}
 	var lines_right_chosen : Dictionary = {}
 	var total_bot_lines = 3 #constant
+	var trench_scale : float = float(ts)
 	
 	var current_pos_left_y : float = 2.7
 	var current_pos_right_y : float
@@ -179,22 +179,7 @@ func new_trench_outline(td): #td = total depth of trench
 	total_side_lines = float(td)
 
 	#assign lines
-
-#	var lines_left : Array = [Vector2(0.0, 0.2), Vector2(0.0069801, 0.1998782), Vector2(0.0139513, 0.1995128), Vector2(0.02092, 0.1989029),Vector2(0.0278937, 0.1980453), Vector2(0.0348649, 0.1969376)]
-#	var lines_right : Array = [Vector2(0.0, 0.2), Vector2(0.0069801, 0.1998782), Vector2(0.02092, 0.1989029),Vector2(0.0278937, 0.1980453), Vector2(0.0348649, 0.1969376)\
-#	, Vector2(0.0415823, 0.1956295), Vector2(0.0483844, 0.1940591), Vector2(0.0551275, 0.1922523), Vector2(0.0618037, 0.1902112), Vector2(0.0684048, 0.1879382)]
-	
-	#calc center of trench
-#	if int(td) <= 5:
-#		trench_center = start_point + Vector2((5 / 5) / 2, 0)
-#	elif int(td) > 5 and int(td) <= 10:
-#		trench_center = start_point + Vector2((10 / 5) / 2, 0)
-#	elif int(td) > 10 and int(td) <= 15:
-#		trench_center = start_point + Vector2((15 / 5) / 2, 0)
-#	elif int(td) > 15:
-#		trench_center = start_point + Vector2((20 / 5) / 2, 0)
-
-	trench_center = start_point + Vector2(float(td) / 5.0 - 1, 0) / 2
+	trench_center = start_point + Vector2(float(td) / trench_scale - 1, 0) / 2
 	
 	end_point = trench_center * Vector2(2,1)
 
@@ -208,14 +193,14 @@ func new_trench_outline(td): #td = total depth of trench
 	
 	
 	if float(td) <= 10:
-		unit_angle_min_left = deg2rad(360)
+		unit_angle_min_left = deg2rad(315)
 		unit_angle_max_left = deg2rad(270)
 		
 		unit_angle_min_right = deg2rad(45)
 		unit_angle_max_right = deg2rad(90)
 		
-		unit_left_length = 0.25
-		unit_right_length = 0.25
+		unit_left_length = 0.10
+		unit_right_length = 0.10
 	else:
 		unit_angle_min_left = deg2rad(315)
 		unit_angle_max_left = deg2rad(270)
@@ -223,22 +208,22 @@ func new_trench_outline(td): #td = total depth of trench
 		unit_angle_min_right = deg2rad(45)
 		unit_angle_max_right = deg2rad(90)
 		
-		unit_left_length = 0.25
-		unit_right_length = 0.25
+		unit_left_length = 0.10
+		unit_right_length = 0.10
 	
 #	var unit_left_x : float = unit_angle_min
 #	var unit_left_y : float = -unit_angle_min
 #	var unit_right_x : float = unit_angle_min
 #	var unit_right_y : float = unit_angle_min
 	
-	var multiplier : float = 0.25
+	var multiplier : float = 0.5
 	
-	var left_end_generator : float = start_point.y - float(td) / 5.0
+	var left_end_generator : float = start_point.y - float(td) / trench_scale
 	var right_end_generator : float = start_point.y
 
 	var i : int = 2
 	#create trench left side
-	while current_pos_left_y >= left_end_generator * (1.0 + multiplier):
+	while current_pos_left_y >= left_end_generator + unit_left_length:
 		var rand_angle = rand_range(unit_angle_min_left, unit_angle_max_left)
 
 		if lines_left_chosen.size() == 0:
@@ -249,27 +234,28 @@ func new_trench_outline(td): #td = total depth of trench
 		
 		i += 1
 		current_pos_left_y = lines_left_chosen[i - 1].y
-		print("while")
 		pass
 	
 	var left_final_depth = lines_left_chosen[lines_left_chosen.size()]
-	var bottom_elevation = 2.70 - float(td) / 5.0
+	var bottom_elevation = 2.70 - float(td) / trench_scale
 	var distance_to_bottom = abs(bottom_elevation - left_final_depth.y)
 	
 	#create trench bottom
-	lines_bottom_chosen[lines_bottom_chosen.size() + 1] = lines_left_chosen[lines_left_chosen.size()] + Vector2(3.0 / 5.0, 0)
+	var bot_elev = 2.7 - float(td) / trench_scale
+	
+	lines_bottom_chosen[lines_bottom_chosen.size() + 1] = Vector2(lines_left_chosen[lines_left_chosen.size()].x + 0.1,bot_elev)
+	lines_bottom_chosen[lines_bottom_chosen.size() + 1] = Vector2(lines_left_chosen[lines_left_chosen.size()].x,0) + Vector2(3.0 / trench_scale, bot_elev)
+	lines_left_chosen[lines_left_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size() - 1]
 	lines_right_chosen[lines_right_chosen.size() + 1] = lines_bottom_chosen[lines_bottom_chosen.size()]
 	
 	current_pos_right_y = lines_right_chosen[lines_right_chosen.size()].y
 	
 	#create trench right side
-	while current_pos_right_y <= right_end_generator * (1.0 - multiplier):
+	while current_pos_right_y <= right_end_generator * (1.0 - 0.1):
 		var rand_angle = rand_range(unit_angle_min_right, unit_angle_max_right)
-		print(rand_angle)
 		lines_right_chosen[lines_right_chosen.size() + 1] = Vector2(unit_left_length * cos(rand_angle), unit_left_length * sin(rand_angle)) + lines_right_chosen[lines_right_chosen.size()] #drawing needs to start @ 1 inch & be added to the last drawn line
 		
 		current_pos_right_y = lines_right_chosen[lines_right_chosen.size() - 1].y
-		print("while#2")
 		pass
 
 	#connect last line
@@ -298,15 +284,15 @@ func get_unit_data(trench_row_data : Dictionary):
 	for row in trench_row_data:
 		if trench_row_data[row]["trench_unit"] != "":
 			unit_data[unit_data.size() + 1] = trench_row_data[row]
-#	print(unit_data)
 	return unit_data
 	
 	
-func get_unit_positions(unit_data : Dictionary, trench_centerline, trench_total_depth):
+func get_unit_positions(unit_data : Dictionary, trench_centerline, trench_total_depth, ts): #ts = trench_scale
 	var data_size : int = unit_data.size()
 	var unit_positions : Dictionary = {}
 	var total_depth : float = float(trench_total_depth)
 	var center_line : Vector2 = trench_centerline
+	var trench_scale : float = float(ts)
 	
 	var contact_positions : Dictionary = {}
 	
@@ -322,12 +308,12 @@ func get_unit_positions(unit_data : Dictionary, trench_centerline, trench_total_
 		
 		#Will need a check here for sloped or not sloped condition. Equations will need modification
 		if i + 1 == data_size:
-			contact_start = float(unit_data[i + 1]["trench_depth"]) / 5 #this needs to be changed to the scale eventually
-			contact_end = trench_centerline.y - total_depth / 5 #will need to be given scale eventually
-			unit_y_pos = contact_end + (total_depth / 5 - contact_start) / 2
+			contact_start = float(unit_data[i + 1]["trench_depth"]) / trench_scale #this needs to be changed to the scale eventually
+			contact_end = trench_centerline.y - total_depth / trench_scale #will need to be given scale eventually
+			unit_y_pos = contact_end + (total_depth / trench_scale - contact_start) / 2
 		else:
-			contact_start = float(unit_data[i + 1]["trench_depth"]) / 5 #this needs to be changed to the scale eventually
-			contact_end = float(unit_data[i + 2]["trench_depth"]) / 5 #will need to be given scale eventually
+			contact_start = float(unit_data[i + 1]["trench_depth"]) / trench_scale #this needs to be changed to the scale eventually
+			contact_end = float(unit_data[i + 2]["trench_depth"]) / trench_scale #will need to be given scale eventually
 			unit_y_pos = trench_centerline.y - (contact_start + contact_end) / 2
 		
 		var unit_position : Vector2
@@ -346,12 +332,13 @@ func get_unit_positions(unit_data : Dictionary, trench_centerline, trench_total_
 	return [unit_positions, contact_positions]
 
 
-func get_contact_positions(positions : Dictionary, trench_start_end, trench_centerline):
+func get_contact_positions(positions : Dictionary, trench_start_end, trench_centerline, ts): #ts = trench_Scale
 	var contact_positions : Dictionary = {}
 	var draw_length_mod : float = 0.4 #how far to draw past the edges of the trench
+	var trench_scale : float = float(ts)
 	
 	for i in range(1, positions.size() + 1):
-		var depth : float = float(positions[i]["trench_depth"]) / 5
+		var depth : float = float(positions[i]["trench_depth"]) / trench_scale
 		
 		if depth != 0.0:
 			var line_y = (trench_centerline.y - depth)

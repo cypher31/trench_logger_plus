@@ -40,9 +40,17 @@ func _ready():
 func file_dialog():
 	var popup : FileDialog = $tab_master/vbox/mc/vbox/button_working_dir/FileDialog
 	
+	var dir = Directory.new()
+	
+	var path : String = "Z:/"
+	
+	if dir.open(path) == OK:
+		popup.set_current_dir(path)
+	else:
+		popup.set_current_dir("C:/Users/")
+		popup.set_current_dir("C:/Users/kelby/dev/software/prototype/trench_logger_plus")
+	
 	popup._set_size(Vector2(750, 250))
-	popup.set_current_dir("C:/Users/")
-	popup.set_current_dir("C:/Users/kelby/dev/software/prototype/trench_logger_plus")
 	popup.popup_centered()
 	return
 	
@@ -58,7 +66,6 @@ func _about_popup():
 func set_working_dir(dir):
 	get_node("tab_master/vbox/mc/vbox/input_working_directory/user_input").set_text(dir)
 	data_management.working_dir = dir
-	print(dir)
 	pass
 
 func save_data():
@@ -68,9 +75,17 @@ func save_data():
 func load_data():
 	var popup = $tab_master/vbox/mc/vbox/button_load_data/file_search
 	
+	var dir = Directory.new()
+	
+	var path : String = "Z:/"
+	
+	if dir.open(path) == OK:
+		popup.set_current_dir(path)
+	else:
+		popup.set_current_dir("C:/Users/")
+		popup.set_current_dir("C:/Users/kelby/dev/software/prototype/trench_logger_plus")
+	
 	popup._set_size(Vector2(750, 250))
-	popup.set_current_dir("C:/Users/")
-	popup.set_current_dir("C:/Users/kelby/dev/software/prototype/trench_logger_plus")
 	popup.popup_centered()
 	pass
 
