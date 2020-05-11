@@ -36,7 +36,7 @@ func save_data():
 	var save_hour = save_time["hour"]
 	var save_min = save_time["minute"]
 	
-	var save_file_name = str(save_year) +"_"+ str(save_month) + "_" + str(project_number)
+	var save_file_name = str(save_year) +"_"+ str(save_month) + "_" + str(save_day) + "_" + str(project_number)
 	
 	#create save file
 	#check if working directory has been selected...
@@ -59,6 +59,10 @@ func save_data():
 		var month = date_time["month"]
 		var hour = date_time["hour"]
 		var minute = date_time["minute"]
+		
+		if int(minute) < 10:
+			minute = "0" + date_time["minute"]
+		
 		var text : String = output_text + "\r\n" + text_standard + " " + save_file_name + " Completed at %s:%s on %s/%s" % [hour, minute, month, day]
 		
 		utility.output_node.set_text(text)
