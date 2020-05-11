@@ -37,11 +37,11 @@ func _ready():
 	
 	pop_up_delete.connect("confirmed", self, "_delete_popup")
 	
-	$tab_master/vbox/mc/vbox/button_add_row.connect("button_up", self, "add_row")
+	$tab_master/vbox/mc/vbox/hbox/mc1/button_add_row.connect("button_up", self, "add_row")
 	$tab_master/vbox/mc/vbox/trench_descriptions/vbox_right/button_script.connect("button_up", self, "new_script", ["single"])
 	utility.connect("generate_all_scripts", self, "new_script", ["all"])
 	
-	$tab_master/vbox/mc/vbox/mc/button_delete_trench.connect("button_up", self, "_show_delete_popup")
+	$tab_master/vbox/mc/vbox/hbox/mc2/button_delete_trench.connect("button_up", self, "_show_delete_popup")
 	
 	$tab_master/vbox/mc/vbox/trench_descriptions/vbox_left/user_input_trench_number/user_input.set_text(get_name())
 	
